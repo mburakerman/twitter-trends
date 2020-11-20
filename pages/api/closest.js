@@ -10,7 +10,9 @@ var T = new Twit({
 })
 
 export default async (req, res) => {
-    T.get('trends/closest', { lat: 41.015137, long: 28.979530 }, function (err, data, response) {
+    const lat = req.body.lat;
+    const lng = req.body.lng;
+    T.get('trends/closest', { lat: lat, long: lng }, function (err, data, response) {
         res.status(200).json(data);
     });
 }

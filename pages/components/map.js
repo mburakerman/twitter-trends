@@ -12,10 +12,28 @@ const Map = ({ eventData, center, zoom }) => {
     const markers = eventData.map(ev => {
         var lat = parseFloat(ev.lat);
         var lng = parseFloat(ev.long)
-        return <MapMarker lat={lat} lng={lng} />
-
+        return <MapMarker lat={turkey.lat} lng={turkey.lng} />
     })
 
+    function handleClick(e) {
+        var lat = e.lat;
+        var lng = e.lng;
+        fetch("/api/closest", {
+            method: "post",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                lat: lat,
+                lng: lng
+            })
+        })
+            .then(res => res.json())
+            .then(function (res) {
+                console.log(res)
+            })
+    }
 
     return (
         <div id="map">
@@ -23,6 +41,7 @@ const Map = ({ eventData, center, zoom }) => {
                 bootstrapURLKeys={{ key: 'AIzaSyBKcbWgVYRSdCv0PCn6dCOvgdV7MjcE-R0' }}
                 defaultCenter={center}
                 defaultZoom={zoom}
+                onClick={(e) => handleClick(e)}
             >
                 {markers}
             </GoogleMapReact>
