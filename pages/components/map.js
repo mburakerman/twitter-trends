@@ -32,6 +32,22 @@ const Map = ({ eventData, center, zoom }) => {
             .then(res => res.json())
             .then(function (res) {
                 console.log(res)
+                const woeid = res[0].woeid;
+
+                fetch("/api/trends", {
+                    method: "post",
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        woeid: woeid
+                    })
+                })
+                    .then(res => res.json())
+                    .then(function (r) {
+                        console.log(r)
+                    })
             })
     }
 

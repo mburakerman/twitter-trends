@@ -14,7 +14,8 @@ export default async (req, res) => {
     "id": '2323778',
     count: 0
   };
-  T.get('trends/place', params, function (err, data, response) {
+  const woeid = req.body.woeid;
+  T.get('trends/place', { id: woeid }, function (err, data, response) {
     res.status(200).json(data);
   });
 }
