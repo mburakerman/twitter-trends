@@ -1,10 +1,7 @@
-
-
-
-const MapMarker = ({ lat, lng }) => {
+const MapMarker = ({ lat, lng, onClick }) => {
     return (
         <div className="custom-marker">
-            <img src="https://logos-download.com/wp-content/uploads/2016/06/Turkey_national_football_team_logo_crest-1.png" />
+            <img src="https://icons-for-free.com/iconfiles/png/512/map+marker+icon-1320166582858325800.png" onClick={onClick} />
         </div>
     )
 }

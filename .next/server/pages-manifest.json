@@ -4,5 +4,7 @@
   "/_document": "pages/_document.js",
   "/": "pages/index.js",
   "/api/trends": "pages/api/trends.js",
-  "/api/closest": "pages/api/closest.js"
+  "/next/dist/pages/_error": "pages/next/dist/pages/_error.js",
+  "/api/closest": "pages/api/closest.js",
+  "/api/countries": "pages/api/countries.js"
 }

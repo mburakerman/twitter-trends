@@ -14,6 +14,10 @@ a {
 * {
   box-sizing: border-box;
 }
+ul {list-style: none;}
+ul li{
+  list-style: none;
+}
 
 #map {
   width:90vw;
@@ -24,4 +28,22 @@ a {
 
 .custom-marker img {
   width:40px;
+}
+
+.map-info-box {
+  position: absolute;
+  max-height: 400px;
+  overflow-x:auto;
+  top: 50px;
+  right: 10px;
+  width: 400px;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+  font-size: 18px;
+  color: #fff;
+}
+
+.right{
+  float:right;
 }

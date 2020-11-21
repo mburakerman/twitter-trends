@@ -1,19 +1,22 @@
 import { useState, useEffect } from 'react'
 import GoogleMapReact from 'google-map-react'
 import MapMarker from './MapMarker'
+import MapInfoBox from './MapInfoBox'
 
 var turkey = {
     lat: 41.015137,
     lng: 28.979530
 }
 const Map = ({ eventData, center, zoom }) => {
-    const [locationInfo, setLocationInfo] = useState(null)
+    const [locationInfo, setLocationInfo] = useState({});
+    const [trendsInfo, setTrendsInfo] = useState({});
 
-    const markers = eventData.map(ev => {
-        var lat = parseFloat(ev.lat);
-        var lng = parseFloat(ev.long)
-        return <MapMarker lat={turkey.lat} lng={turkey.lng} />
+    const markers = eventData.map(item => {
+        var lat = parseFloat(item.lat);
+        var lng = parseFloat(item.long);
+        return <MapMarker lat={turkey.lat} lng={turkey.lng} onClick={() => setLocationInfo(item)} />
     })
+
 
     function handleClick(e) {
         var lat = e.lat;
@@ -45,9 +48,11 @@ const Map = ({ eventData, center, zoom }) => {
                     })
                 })
                     .then(res => res.json())
-                    .then(function (r) {
-                        console.log(r)
-                    })
+                    .then(function (response) {
+                        var trends = response[0];
+                        setTrendsInfo(trends);
+                        console.log(trendsInfo)
+                    });
             })
     }
 
@@ -59,8 +64,28 @@ const Map = ({ eventData, center, zoom }) => {
                 defaultZoom={zoom}
                 onClick={(e) => handleClick(e)}
             >
-                {markers}
+
             </GoogleMapReact>
+            <p className="right">lorem</p>
+
+
+            {trendsInfo.locations && <h3>{trendsInfo.locations[0].name}</h3>}
+            {
+
+                trendsInfo.trends && trendsInfo.trends.map(function (item, index) {
+                    if (!item.tweet_volume) return;
+                    return <li key={index}>
+                        <a href={item.url} target="_blank" rel="noopener">
+                            <p>{item.name}</p>
+
+                            <small>{item.tweet_volume && item.tweet_volume} Tweet</small>
+                        </a>
+                    </li>;
+                })
+            }
+
+
+            {trendsInfo && <MapInfoBox info={trendsInfo} />}
         </div>
     )
 }
