@@ -3,8 +3,6 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/": "pages/index.js",
-  "/api/trends": "pages/api/trends.js",
-  "/next/dist/pages/_error": "pages/next/dist/pages/_error.js",
   "/api/closest": "pages/api/closest.js",
-  "/api/countries": "pages/api/countries.js"
+  "/api/trends": "pages/api/trends.js"
 }

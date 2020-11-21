@@ -64,27 +64,7 @@ const Map = ({ eventData, center, zoom }) => {
                 defaultZoom={zoom}
                 onClick={(e) => handleClick(e)}
             >
-
             </GoogleMapReact>
-            <p className="right">lorem</p>
-
-
-            {trendsInfo.locations && <h3>{trendsInfo.locations[0].name}</h3>}
-            {
-
-                trendsInfo.trends && trendsInfo.trends.map(function (item, index) {
-                    if (!item.tweet_volume) return;
-                    return <li key={index}>
-                        <a href={item.url} target="_blank" rel="noopener">
-                            <p>{item.name}</p>
-
-                            <small>{item.tweet_volume && item.tweet_volume} Tweet</small>
-                        </a>
-                    </li>;
-                })
-            }
-
-
             {trendsInfo && <MapInfoBox info={trendsInfo} />}
         </div>
     )
