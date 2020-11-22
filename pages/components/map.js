@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import GoogleMapReact from 'google-map-react'
 import MapMarker from './MapMarker'
 import TrendsBox from './TrendsBox'
+import TrendsBoxLoader from './TrendsBoxLoader'
 
 var turkey = {
     lat: 41.015137,
@@ -11,7 +12,6 @@ const Map = ({ eventData, center, zoom }) => {
     const [locationInfo, setLocationInfo] = useState({});
     const [trendsInfo, setTrendsInfo] = useState({});
     const [loading, setLoading] = useState(false)
-
 
     /*const markers = eventData.map(item => {
         var lat = parseFloat(item.lat);
@@ -75,6 +75,7 @@ const Map = ({ eventData, center, zoom }) => {
             >
             </GoogleMapReact>
             {trendsInfo && <TrendsBox info={trendsInfo} />}
+            {loading && <TrendsBoxLoader />}
         </div>
     )
 }

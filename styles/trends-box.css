@@ -6,7 +6,13 @@
 	background-color: rgba(21, 32, 43, .6);
 	border-radius: 10px;
 	font-size: 18px;
-	color: #fff;
+    color: #fff;
+}
+.trends-box__loader {
+    position: absolute;
+    top:68px;
+    right:20px;
+    width:30px;
 }
 
 .trends-box__title {

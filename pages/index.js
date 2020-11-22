@@ -7,20 +7,6 @@ export default function Home() {
   const [eventData, setEventData] = useState([])
   const [loading, setLoading] = useState(false)
 
-  useEffect(() => {
-    const fetchEvents = async () => {
-      setLoading(true)
-      const res = await fetch('/api/countries')
-      const countries = await res.json()
-
-      setEventData(countries)
-      setLoading(false)
-    }
-
-    fetchEvents()
-  }, [])
-
-
   return (
     <div>
       <Head>
