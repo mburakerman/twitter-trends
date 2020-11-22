@@ -67,13 +67,13 @@ const Map = ({ eventData, center, zoom }) => {
 
     return (
         <div id="map">
-            {!loading ? <GoogleMapReact
+            <GoogleMapReact
                 bootstrapURLKeys={{ key: 'AIzaSyBKcbWgVYRSdCv0PCn6dCOvgdV7MjcE-R0' }}
                 defaultCenter={center}
                 defaultZoom={zoom}
                 onClick={(e) => getClickedAreasWoeid(e)}
             >
-            </GoogleMapReact> : "<h1>loading</h1>"}
+            </GoogleMapReact>
             {trendsInfo && <TrendsBox info={trendsInfo} />}
         </div>
     )
