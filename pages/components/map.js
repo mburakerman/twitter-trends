@@ -17,6 +17,11 @@ const Map = ({ eventData, center, zoom }) => {
         return <MapMarker lat={turkey.lat} lng={turkey.lng} onClick={() => setLocationInfo(item)} />
     })
 
+    useEffect(() => {
+        // woeid 1 is wordlwide
+        fetchTrends("1");
+    }, [])
+
 
     function getClickedAreasWoeid(e) {
         var clickedPosition = {
