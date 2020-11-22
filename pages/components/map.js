@@ -10,12 +10,14 @@ var turkey = {
 const Map = ({ eventData, center, zoom }) => {
     const [locationInfo, setLocationInfo] = useState({});
     const [trendsInfo, setTrendsInfo] = useState({});
+    const [loading, setLoading] = useState(false)
 
-    const markers = eventData.map(item => {
+
+    /*const markers = eventData.map(item => {
         var lat = parseFloat(item.lat);
         var lng = parseFloat(item.long);
         return <MapMarker lat={turkey.lat} lng={turkey.lng} onClick={() => setLocationInfo(item)} />
-    })
+    }) */
 
     useEffect(() => {
         // woeid 1 is wordlwide
@@ -23,13 +25,13 @@ const Map = ({ eventData, center, zoom }) => {
     }, [])
 
 
-    function getClickedAreasWoeid(e) {
+    async function getClickedAreasWoeid(e) {
         var clickedPosition = {
             lat: e.lat,
             lng: e.lng
         }
 
-        fetch("/api/closest", {
+        await fetch("/api/closest", {
             method: "post",
             headers: {
                 'Accept': 'application/json',
@@ -44,6 +46,7 @@ const Map = ({ eventData, center, zoom }) => {
             })
     }
     async function fetchTrends(woeid) {
+        setLoading(true)
         await fetch("/api/trends", {
             method: "post",
             headers: {
@@ -56,6 +59,7 @@ const Map = ({ eventData, center, zoom }) => {
         })
             .then(res => res.json())
             .then(function (response) {
+                setLoading(false);
                 var trends = response[0];
                 setTrendsInfo(trends);
             });
@@ -63,13 +67,13 @@ const Map = ({ eventData, center, zoom }) => {
 
     return (
         <div id="map">
-            <GoogleMapReact
+            {!loading ? <GoogleMapReact
                 bootstrapURLKeys={{ key: 'AIzaSyBKcbWgVYRSdCv0PCn6dCOvgdV7MjcE-R0' }}
                 defaultCenter={center}
                 defaultZoom={zoom}
                 onClick={(e) => getClickedAreasWoeid(e)}
             >
-            </GoogleMapReact>
+            </GoogleMapReact> : "<h1>loading</h1>"}
             {trendsInfo && <TrendsBox info={trendsInfo} />}
         </div>
     )

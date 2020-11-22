@@ -28,8 +28,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main >
-        {!loading ? <Map eventData={eventData} /> : "<h1>loading</h1>"}
+      <main>
+        <Map />
       </main>
     </div>
   )
