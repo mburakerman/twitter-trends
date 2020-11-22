@@ -1,0 +1,47 @@
+.trends-box {
+    position: absolute;
+    max-height: 400px;
+    top: 50px;
+    right: 10px;
+    width: 400px;
+    padding: 10px;
+    background-color: rgba(21, 32, 43, .6);
+    border-radius: 10px;
+    font-size: 18px;
+    color: #fff;
+}
+.trends-box__title {
+color:#fff;
+font-size:20px;
+font-weight: bold;
+padding: .5em 0;
+z-index: 2;
+display:flex;
+align-items: center;
+}
+.trends-box__title img {
+width:20px;
+display:block;
+margin-right: .5em;
+}
+.trends-box__trends {
+max-height: 300px;
+overflow-x:auto;
+}
+.trends-box__trends li a{
+color:#fff;
+display:block;
+border-bottom: 1px solid rgba(255,255,255,.2);
+font-size:16px;
+padding: .8em 0;
+text-decoration: none;
+}
+.trends-box__trends li a p{
+font-weight: 500;
+margin-bottom: .4em;
+}
+.trends-box__trends li a small{
+opacity: .6;
+font-size: smaller;
+}
+  

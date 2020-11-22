@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import GoogleMapReact from 'google-map-react'
 import MapMarker from './MapMarker'
-import MapInfoBox from './MapInfoBox'
+import TrendsBox from './TrendsBox'
 
 var turkey = {
     lat: 41.015137,
@@ -65,7 +65,7 @@ const Map = ({ eventData, center, zoom }) => {
                 onClick={(e) => handleClick(e)}
             >
             </GoogleMapReact>
-            {trendsInfo && <MapInfoBox info={trendsInfo} />}
+            {trendsInfo && <TrendsBox info={trendsInfo} />}
         </div>
     )
 }

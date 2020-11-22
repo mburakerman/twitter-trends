@@ -4,5 +4,6 @@
   "/_document": "pages/_document.js",
   "/": "pages/index.js",
   "/api/closest": "pages/api/closest.js",
-  "/api/trends": "pages/api/trends.js"
+  "/api/trends": "pages/api/trends.js",
+  "/api/countries": "pages/api/countries.js"
 }
