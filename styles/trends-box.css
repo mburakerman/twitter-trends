@@ -1,6 +1,5 @@
 .trends-box {
     position: absolute;
-    max-height: 400px;
     top: 50px;
     right: 10px;
     width: 400px;
@@ -10,6 +9,7 @@
     font-size: 18px;
     color: #fff;
 }
+
 .trends-box__title {
 color:#fff;
 font-size:20px;
@@ -36,6 +36,11 @@ font-size:16px;
 padding: .8em 0;
 text-decoration: none;
 }
+.trends-box__trends li a:hover{
+    background-color:rgba(21, 32, 43, .2);
+    transition: all .2s ease;
+}
+
 .trends-box__trends li a p{
 font-weight: 500;
 margin-bottom: .4em;

@@ -3,7 +3,7 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/": "pages/index.js",
+  "/api/countries": "pages/api/countries.js",
   "/api/closest": "pages/api/closest.js",
-  "/api/trends": "pages/api/trends.js",
-  "/api/countries": "pages/api/countries.js"
+  "/api/trends": "pages/api/trends.js"
 }

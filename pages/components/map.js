@@ -18,42 +18,42 @@ const Map = ({ eventData, center, zoom }) => {
     })
 
 
-    function handleClick(e) {
-        var lat = e.lat;
-        var lng = e.lng;
+    function getClickedAreasWoeid(e) {
+        var clickedPosition = {
+            lat: e.lat,
+            lng: e.lng
+        }
+
         fetch("/api/closest", {
             method: "post",
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-                lat: lat,
-                lng: lng
-            })
+            body: JSON.stringify(clickedPosition)
         })
             .then(res => res.json())
             .then(function (res) {
-                console.log(res)
                 const woeid = res[0].woeid;
-
-                fetch("/api/trends", {
-                    method: "post",
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        woeid: woeid
-                    })
-                })
-                    .then(res => res.json())
-                    .then(function (response) {
-                        var trends = response[0];
-                        setTrendsInfo(trends);
-                        console.log(trendsInfo)
-                    });
+                fetchTrends(woeid);
             })
+    }
+    async function fetchTrends(woeid) {
+        await fetch("/api/trends", {
+            method: "post",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                woeid: woeid
+            })
+        })
+            .then(res => res.json())
+            .then(function (response) {
+                var trends = response[0];
+                setTrendsInfo(trends);
+            });
     }
 
     return (
@@ -62,7 +62,7 @@ const Map = ({ eventData, center, zoom }) => {
                 bootstrapURLKeys={{ key: 'AIzaSyBKcbWgVYRSdCv0PCn6dCOvgdV7MjcE-R0' }}
                 defaultCenter={center}
                 defaultZoom={zoom}
-                onClick={(e) => handleClick(e)}
+                onClick={(e) => getClickedAreasWoeid(e)}
             >
             </GoogleMapReact>
             {trendsInfo && <TrendsBox info={trendsInfo} />}
