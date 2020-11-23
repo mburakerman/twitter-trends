@@ -13,12 +13,15 @@ html {
 a {
   text-decoration: none;
 }
+:root {
+  --mainBackgroundColor: rgba(21, 32, 43, .7);
+}
 
 header {
   position: absolute;
   top:0;
   right:0;
-  background-color: rgba(21, 32, 43, .6);
+  background-color:var(--mainBackgroundColor);
   width:350px;
   z-index: 4444;
   padding: 15px 0;
@@ -33,7 +36,7 @@ footer {
   position: absolute;
   top:418px;
   right:0;
-  background-color: rgba(21, 32, 43, .6);
+  background-color: var(--mainBackgroundColor);
   width:350px;
   z-index: 4444;
   padding: 15px 0;

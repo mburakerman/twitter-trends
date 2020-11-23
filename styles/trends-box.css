@@ -3,7 +3,7 @@
 	top: 58px;
 	right: 0px;
 	width: 350px;
-	background-color: rgba(21, 32, 43, .6);
+	background-color:var(--mainBackgroundColor);
 	border-radius: 0px;
 	font-size: 18px;
     color: #fff;
