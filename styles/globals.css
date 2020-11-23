@@ -22,16 +22,16 @@ header {
   width:350px;
   z-index: 4444;
   padding: 15px 0;
+  color:#fff;
+  text-align: center;
 }
 header h1 {
-  font-size:30px;
-  color:#fff;
+  font-size:28px;
   font-weight: bold;
-  text-align: center;;
 }
 footer {
   position: absolute;
-  top:420px;
+  top:418px;
   right:0;
   background-color: rgba(21, 32, 43, .6);
   width:350px;
@@ -39,7 +39,7 @@ footer {
   padding: 15px 0;
   color:#fff;
   text-align:center;
-  border-top: 1px solid #ddd;
+  padding-top:2em;
 }
 footer * {
   color:#fff;
@@ -48,7 +48,7 @@ footer * {
   font-size:13px;
   text-align: center;
   margin-top:2em;
-  opacity: .6;
+  opacity: .7;
 }
 
 #map {
@@ -56,11 +56,10 @@ footer * {
   height:100vh;
   position: relative;
 }
-
-.custom-marker {
-  width:40px;
+.map-marker {
+  width:44px;
+  height:44px;
   transform: translate(-50%, -100%);
-}
-.custom-marker img {
-  width:40px;
+  position: relative;
+  top: 22px;
 }

@@ -1,6 +1,6 @@
 .trends-box {
 	position: absolute;
-	top: 60px;
+	top: 58px;
 	right: 0px;
 	width: 350px;
 	background-color: rgba(21, 32, 43, .6);
@@ -10,7 +10,7 @@
 }
 .trends-box__loader {
     position: absolute;
-    top:68px;
+    top:75px;
     right:20px;
     width:30px;
 }
@@ -33,6 +33,7 @@
 
 .trends-box__trends {
 	max-height: 300px;
+	min-height: 300px;
 	overflow-x: auto;
 }
 

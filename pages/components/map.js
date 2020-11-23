@@ -68,6 +68,9 @@ const Map = ({ eventData, center, zoom }) => {
                 bootstrapURLKeys={{ key: 'AIzaSyBKcbWgVYRSdCv0PCn6dCOvgdV7MjcE-R0' }}
                 defaultCenter={center}
                 defaultZoom={zoom}
+                options={{
+                    fullscreenControl: false,
+                }}
                 onClick={(e) => getClickedAreasWoeid(e)}
             >
                 {clickedPosition.lat && <MapMarker lat={clickedPosition.lat} lng={clickedPosition.lng} />}
