@@ -20,7 +20,7 @@ export default function Home() {
 
       <footer>
         <ul></ul>
-        <p>Made with <a href="https://developer.twitter.com/en/docs/twitter-api" target="_blank" rel="noopener"> Twitter API</a></p>
+        <p>Made with <a href="https://developer.twitter.com/en/docs/twitter-api" target="_blank" rel="noopener"> ✨ Twitter API</a></p>
         <p className="footer__author"><a href="https://mburakerman.github.io">Mehmet Burak Erman</a></p>
       </footer>
     </div>

@@ -1,18 +1,17 @@
 .trends-box {
 	position: absolute;
-	top: 58px;
+	top: 56px;
 	right: 0px;
 	width: 350px;
 	background-color:var(--mainBackgroundColor);
 	border-radius: 0px;
-	font-size: 18px;
     color: #fff;
 }
 .trends-box__loader {
     position: absolute;
-    top:75px;
+    top:77px;
     right:20px;
-    width:30px;
+    width:20px;
 }
 
 .trends-box__title {
