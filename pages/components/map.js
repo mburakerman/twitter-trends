@@ -9,6 +9,7 @@ const Map = ({ eventData, center, zoom }) => {
     const [locationInfo, setLocationInfo] = useState({});
     const [trendsInfo, setTrendsInfo] = useState({});
     const [clickedPosition, setClickedPosition] = useState({});
+    const [clickedPositionCountryFlag, setClickedPositionCountryFlag] = useState({});
     const [loading, setLoading] = useState(false)
 
 
@@ -35,8 +36,12 @@ const Map = ({ eventData, center, zoom }) => {
             .then(res => res.json())
             .then(function (res) {
                 const woeid = res[0].woeid;
+                const countryCode = res[0].countryCode;
                 fetchTrends(woeid);
-            })
+                if (woeid !== 1) {
+                    fetchCountryFlag(countryCode);
+                }
+            });
     }
     async function fetchTrends(woeid) {
         setLoading(true)
@@ -62,6 +67,23 @@ const Map = ({ eventData, center, zoom }) => {
             });
     }
 
+    async function fetchCountryFlag(countryCode) {
+        await fetch("/api/country-flag", {
+            method: "post",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                countryCode: countryCode
+            })
+        })
+            .then(res => res.json())
+            .then(r => {
+                setClickedPositionCountryFlag(r);
+            })
+    }
+
     return (
         <div id="map">
             <GoogleMapReact
@@ -76,7 +98,7 @@ const Map = ({ eventData, center, zoom }) => {
                 {clickedPosition.lat && <MapMarker lat={clickedPosition.lat} lng={clickedPosition.lng} />}
             </GoogleMapReact>
 
-            {trendsInfo && <TrendsBox info={trendsInfo} />}
+            {trendsInfo && <TrendsBox info={trendsInfo} flag={clickedPositionCountryFlag.countryFlagUrl} />}
             {loading && <TrendsBoxLoader />}
         </div>
     )

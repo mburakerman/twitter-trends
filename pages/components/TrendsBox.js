@@ -1,7 +1,11 @@
-const TrendsBox = ({ info }) => {
+const TrendsBox = ({ info, flag }) => {
     return (
         <div className="trends-box">
-            {info.locations && <h3 className="trends-box__title"><img src="./twitter.svg" />{info.locations[0].name} Trends</h3>}
+            {info.locations &&
+                <h3 className="trends-box__title">
+                    {flag && <img src={flag} width="20" loading="lazy" />}{info.locations[0].name} Trends
+                </h3>
+            }
             <ul className="trends-box__trends">
                 {
                     info.trends && info.trends.map(function (item, index) {
