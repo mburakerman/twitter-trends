@@ -8,7 +8,7 @@ const TrendsBox = ({ info, flag }) => {
             }
             <ul className="trends-box__trends">
                 {
-                    info.trends && info.trends.map(function (item, index) {
+                    info.trends.length ? info.trends.map(function (item, index) {
                         if (!item.tweet_volume) return;
                         return <li key={index}>
                             <a href={item.url} target="_blank" rel="noopener">
@@ -16,10 +16,10 @@ const TrendsBox = ({ info, flag }) => {
                                 <small>{item.tweet_volume && new Intl.NumberFormat(['ban', 'id']).format(item.tweet_volume)} Tweet</small>
                             </a>
                         </li>;
-                    })
+                    }) : <li><a><p>😞 No trend found</p></a></li>
                 }
             </ul>
-        </div>
+        </div >
     )
 }
 
