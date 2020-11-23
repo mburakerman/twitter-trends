@@ -21,7 +21,10 @@ html {
   position: relative;
 }
 
-
+.custom-marker {
+  width:40px;
+  transform: translate(-50%, -100%);
+}
 .custom-marker img {
   width:40px;
 }

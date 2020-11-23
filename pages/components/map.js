@@ -4,10 +4,7 @@ import MapMarker from './MapMarker'
 import TrendsBox from './TrendsBox'
 import TrendsBoxLoader from './TrendsBoxLoader'
 
-var turkey = {
-    lat: 41.015137,
-    lng: 28.979530
-}
+
 const Map = ({ eventData, center, zoom }) => {
     const [locationInfo, setLocationInfo] = useState({});
     const [trendsInfo, setTrendsInfo] = useState({});
@@ -80,8 +77,8 @@ const Map = ({ eventData, center, zoom }) => {
 
 Map.defaultProps = {
     center: {
-        lat: 42.3265,
-        lng: -122.8756
+        lat: 41.015137,
+        lng: 8.979530
     },
     zoom: 1
 }
