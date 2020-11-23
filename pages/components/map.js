@@ -53,8 +53,12 @@ const Map = ({ eventData, center, zoom }) => {
             .then(res => res.json())
             .then(function (response) {
                 setLoading(false);
-                var trends = response[0];
-                setTrendsInfo(trends);
+                var data = response[0];
+                // sort data based on tweet volume
+                data.trends.sort(function (a, b) {
+                    return b.tweet_volume - a.tweet_volume;
+                });
+                setTrendsInfo(data);
             });
     }
 
