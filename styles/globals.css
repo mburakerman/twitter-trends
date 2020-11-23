@@ -15,8 +15,24 @@ html {
   margin: 0;
 }
 
+header {
+  position: absolute;
+  top:0;
+  right:0;
+  background-color: rgba(21, 32, 43, .6);
+  width:350px;
+  z-index: 4444;
+  padding: 15px 0;
+}
+header h1 {
+  font-size:30px;
+  color:#fff;
+  font-weight: bold;
+  text-align: center;;
+}
+
 #map {
-  width:95vw;
+  width:100vw;
   height:100vh;
   position: relative;
 }
@@ -28,4 +44,3 @@ html {
 .custom-marker img {
   width:40px;
 }
-

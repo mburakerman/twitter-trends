@@ -54,7 +54,9 @@ export default function Home() {
         <title>Twitter Trends</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
+      <header>
+        <h1>Twitter Trends</h1>
+      </header>
       <main>
         <Map />
         {/*
