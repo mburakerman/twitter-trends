@@ -11,25 +11,21 @@ var turkey = {
 const Map = ({ eventData, center, zoom }) => {
     const [locationInfo, setLocationInfo] = useState({});
     const [trendsInfo, setTrendsInfo] = useState({});
+    const [clickedPosition, setClickedPosition] = useState({});
     const [loading, setLoading] = useState(false)
 
-    /*const markers = eventData.map(item => {
-        var lat = parseFloat(item.lat);
-        var lng = parseFloat(item.long);
-        return <MapMarker lat={turkey.lat} lng={turkey.lng} onClick={() => setLocationInfo(item)} />
-    }) */
 
     useEffect(() => {
         // woeid 1 is wordlwide
         fetchTrends("1");
-    }, [])
-
+    }, []);
 
     async function getClickedAreasWoeid(e) {
         var clickedPosition = {
             lat: e.lat,
             lng: e.lng
         }
+        setClickedPosition(clickedPosition);
 
         await fetch("/api/closest", {
             method: "post",
@@ -73,7 +69,9 @@ const Map = ({ eventData, center, zoom }) => {
                 defaultZoom={zoom}
                 onClick={(e) => getClickedAreasWoeid(e)}
             >
+                {clickedPosition.lat && <MapMarker lat={clickedPosition.lat} lng={clickedPosition.lng} />}
             </GoogleMapReact>
+
             {trendsInfo && <TrendsBox info={trendsInfo} />}
             {loading && <TrendsBoxLoader />}
         </div>

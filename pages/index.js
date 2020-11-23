@@ -26,7 +26,7 @@ export default function Home() {
           } */
         })
     }
-    fetchLocations();
+
     async function fetchTrends(woeid) {
       setLoading(true)
       await fetch("/api/trends", {
@@ -57,11 +57,13 @@ export default function Home() {
 
       <main>
         <Map />
-        {locations && locations.map(function (item, index) {
+        {/*
+          {locations && locations.map(function (item, index) {
           if (!item.woeid) return;
           if (item.woeid == 1) return;
           return <p>{item.name}</p>
         })}
+      */}
       </main>
     </div>
   )
