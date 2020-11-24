@@ -2,8 +2,8 @@
 	position: absolute;
 	top: 56px;
 	right: 0px;
-	width: 350px;
-	background-color:var(--mainBackgroundColor);
+	width: var(--boxWidth);
+	background-color:var(--boxBackgroundColor);
 	border-radius: 0px;
 	color: #fff;
 }

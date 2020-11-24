@@ -15,15 +15,22 @@ a {
   text-decoration: none;
 }
 :root {
-  --mainBackgroundColor: rgba(21, 32, 43, .7);
+  --boxBackgroundColor: rgba(21, 32, 43, .7);
+  --boxWidth : 350px;
+}
+
+@media screen and (max-width: 768px) {
+  :root {
+    --boxWidth : 80%;
+  }
 }
 
 header {
   position: absolute;
   top:0;
   right:0;
-  background-color:var(--mainBackgroundColor);
-  width:350px;
+  background-color:var(--boxBackgroundColor);
+  width:var(--boxWidth);
   z-index: 4444;
   padding: 15px 0;
   color:#fff;
@@ -37,8 +44,8 @@ footer {
   position: absolute;
   top:416px;
   right:0;
-  background-color: var(--mainBackgroundColor);
-  width:350px;
+  background-color: var(--boxBackgroundColor);
+  width:var(--boxWidth);
   z-index: 4444;
   padding: 15px 0;
   color:#fff;
@@ -67,4 +74,11 @@ footer * {
   transform: translate(-50%, -100%);
   position: relative;
   top: 22px;
+}
+
+
+@media screen and (max-width: 768px) {
+  :root {
+    --boxWidth : 80%;
+  }
 }
