@@ -12,7 +12,7 @@ const Map = ({ center, zoom }) => {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        // woeid 1 is wordlwide
+        // woeid 1 is worldwide
         fetchTrends("1");
     }, []);
 
