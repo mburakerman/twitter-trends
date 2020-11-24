@@ -97,7 +97,7 @@ const Map = ({ center, zoom }) => {
                 {clickedPosition.lat && <MapMarker lat={clickedPosition.lat} lng={clickedPosition.lng} />}
             </GoogleMapReact>
 
-            {trendsInfo && <TrendsBox info={trendsInfo} flag={clickedPositionCountryFlag.countryFlagUrl} />}
+            {trendsInfo.locations && <TrendsBox info={trendsInfo} flag={clickedPositionCountryFlag.countryFlagUrl} />}
             {loading && <TrendsBoxLoader />}
         </div>
     )
