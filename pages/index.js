@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 
 import Head from 'next/head'
-import Map from "./components/map.js"
+import Map from "./components/Map.js"
 
 export default function Home() {
   return (

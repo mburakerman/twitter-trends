@@ -23,4 +23,4 @@ const TrendsBox = ({ info, flag }) => {
     )
 }
 
-export default TrendsBox
+export default TrendsBox;

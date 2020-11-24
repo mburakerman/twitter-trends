@@ -5,13 +5,11 @@ import TrendsBox from './TrendsBox'
 import TrendsBoxLoader from './TrendsBoxLoader'
 
 
-const Map = ({ eventData, center, zoom }) => {
-    const [locationInfo, setLocationInfo] = useState({});
+const Map = ({ center, zoom }) => {
     const [trendsInfo, setTrendsInfo] = useState({});
     const [clickedPosition, setClickedPosition] = useState({});
     const [clickedPositionCountryFlag, setClickedPositionCountryFlag] = useState({});
-    const [loading, setLoading] = useState(false)
-
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         // woeid 1 is wordlwide
@@ -44,7 +42,8 @@ const Map = ({ eventData, center, zoom }) => {
             });
     }
     async function fetchTrends(woeid) {
-        setLoading(true)
+        setLoading(true);
+
         await fetch("/api/trends", {
             method: "post",
             headers: {
@@ -81,7 +80,7 @@ const Map = ({ eventData, center, zoom }) => {
             .then(res => res.json())
             .then(r => {
                 setClickedPositionCountryFlag(r);
-            })
+            });
     }
 
     return (
