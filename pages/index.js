@@ -1,5 +1,3 @@
-import { useState, useEffect } from 'react'
-
 import Head from 'next/head'
 import Map from "./components/Map.js"
 
