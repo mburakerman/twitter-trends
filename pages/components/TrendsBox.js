@@ -8,7 +8,7 @@ const TrendsBox = ({ info, flag }) => {
             }
             <ul className="trends-box__trends">
                 {
-                    info.trends.length ? info.trends.map(function (item, index) {
+                    info.trends ? info.trends.map(function (item, index) {
                         if (!item.tweet_volume) return;
                         return <li key={index}>
                             <a href={item.url} target="_blank" rel="noopener">

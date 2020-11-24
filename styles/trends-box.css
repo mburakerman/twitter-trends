@@ -5,7 +5,7 @@
 	width: 350px;
 	background-color:var(--mainBackgroundColor);
 	border-radius: 0px;
-    color: #fff;
+	color: #fff;
 }
 .trends-box__loader {
     position: absolute;
@@ -33,6 +33,7 @@
 	max-height: 300px;
 	min-height: 300px;
 	overflow-x: auto;
+	
 }
 
 .trends-box__trends li a {
