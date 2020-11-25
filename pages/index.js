@@ -7,7 +7,6 @@ export default function Home() {
       <Head>
         <title>Twitter Trends</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta itemprop="name" content="Twitter Trends" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
       </Head>
       <header>
