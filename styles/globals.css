@@ -21,7 +21,7 @@ a {
 
 @media screen and (max-width: 768px) {
   :root {
-    --boxWidth : 80%;
+    --boxWidth : 82%;
   }
 }
 
@@ -88,11 +88,4 @@ footer details summary {
   transform: translate(-50%, -100%);
   position: relative;
   top: 22px;
-}
-
-
-@media screen and (max-width: 768px) {
-  :root {
-    --boxWidth : 80%;
-  }
 }
