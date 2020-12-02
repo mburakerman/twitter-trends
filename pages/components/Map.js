@@ -4,7 +4,6 @@ import MapMarker from './MapMarker'
 import TrendsBox from './TrendsBox'
 import TrendsBoxLoader from './TrendsBoxLoader'
 
-
 const Map = ({ center, zoom }) => {
     const [trendsInfo, setTrendsInfo] = useState({});
     const [clickedPosition, setClickedPosition] = useState({});
@@ -80,6 +79,8 @@ const Map = ({ center, zoom }) => {
             .then(res => res.json())
             .then(r => {
                 setClickedPositionCountryFlag(r);
+                // update favicon
+                document.getElementById("favicon").href = r.countryFlagUrl;
             });
     }
 
