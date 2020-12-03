@@ -70,7 +70,7 @@ footer details summary {
   flex-wrap: wrap;
   align-items:center;
   justify-content: space-around;
-  font-size:13px;
+  font-size:12px;
 }
 .footer__bottom p {
   margin-bottom: .5em;
