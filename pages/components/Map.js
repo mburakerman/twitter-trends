@@ -58,9 +58,9 @@ const Map = ({ center, zoom }) => {
                 setLoading(false);
                 var data = response[0];
                 // sort data based on tweet volume
-                data.trends.sort(function (a, b) {
+                /*data.trends.sort(function (a, b) {
                     return b.tweet_volume - a.tweet_volume;
-                });
+                });*/
                 setTrendsInfo(data);
             });
     }
