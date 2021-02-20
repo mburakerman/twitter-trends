@@ -17,11 +17,13 @@ a {
 :root {
   --boxBackgroundColor: rgba(21, 32, 43, .7);
   --boxWidth : 350px;
+  --footerBorderBottomLeftRadius: 10px;
 }
 
 @media screen and (max-width: 768px) {
   :root {
-    --boxWidth : 82%;
+    --boxWidth : 100%;
+    --footerBorderBottomLeftRadius: 0px;
   }
 }
 
@@ -37,44 +39,8 @@ header {
   text-align: center;
 }
 header h1 {
-  font-size:26px;
+  font-size:25px;
   font-weight: bold;
-}
-footer {
-  position: absolute;
-  top:416px;
-  right:0;
-  background-color: var(--boxBackgroundColor);
-  width:var(--boxWidth);
-  z-index: 4444;
-  padding: 10px 5px;
-  color:#fff;
-  text-align:center;
-  padding-top:1.5em;
-  border-bottom-left-radius: 10px;
-  font-size: 14px;;
-}
-footer * {
-  color:#fff;
-}
-footer details {
-  margin-bottom: 1.5em;
-  line-height: 1.2;
-}
-footer details summary {
-  margin-bottom: .2em;
-  cursor:pointer;
-}
-.footer__bottom {
-  display: flex;
-  flex-wrap: wrap;
-  align-items:center;
-  justify-content: space-around;
-  font-size:12px;
-}
-.footer__bottom p {
-  margin-bottom: .5em;
-  opacity: .85;
 }
 
 #map {
@@ -88,4 +54,15 @@ footer details summary {
   transform: translate(-50%, -100%);
   position: relative;
   top: 22px;
+}
+
+.eye {
+  position: absolute;
+  top: .5em;
+  right:.5em;
+  z-index: 9999;
+  cursor: pointer;
+}
+.eye img {
+  width:14px;
 }

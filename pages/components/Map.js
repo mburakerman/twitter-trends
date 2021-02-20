@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import GoogleMapReact from 'google-map-react'
 import MapMarker from './MapMarker'
 import TrendsBox from './TrendsBox'
-import TrendsBoxLoader from './TrendsBoxLoader'
 
 const Map = ({ center, zoom }) => {
     const [trendsInfo, setTrendsInfo] = useState({});
@@ -83,7 +82,6 @@ const Map = ({ center, zoom }) => {
                 document.getElementById("favicon").href = r.countryFlagUrl;
             });
     }
-
     return (
         <div id="map">
             <GoogleMapReact
@@ -98,8 +96,10 @@ const Map = ({ center, zoom }) => {
                 {clickedPosition.lat && <MapMarker lat={clickedPosition.lat} lng={clickedPosition.lng} />}
             </GoogleMapReact>
 
-            {trendsInfo.locations && <TrendsBox info={trendsInfo} flag={clickedPositionCountryFlag.countryFlagUrl} />}
-            {loading && <TrendsBoxLoader />}
+            {
+                trendsInfo.locations &&
+                <TrendsBox info={trendsInfo} flag={clickedPositionCountryFlag.countryFlagUrl} loading={loading} />
+            }
         </div>
     )
 }
@@ -112,4 +112,4 @@ Map.defaultProps = {
     zoom: 1
 }
 
-export default Map
+export default Map;

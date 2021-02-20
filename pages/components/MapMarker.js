@@ -4,4 +4,4 @@ const MapMarker = () => {
     )
 }
 
-export default MapMarker
+export default MapMarker;
