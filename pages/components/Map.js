@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react'
 import GoogleMapReact from 'google-map-react'
 import MapMarker from './MapMarker'
-import TrendsBox from './TrendsBox'
+import TrendsBox, { useGlobalState } from './TrendsBox'
 
 const Map = ({ center, zoom }) => {
     const [trendsInfo, setTrendsInfo] = useState({});
     const [clickedPosition, setClickedPosition] = useState({});
     const [clickedPositionCountryFlag, setClickedPositionCountryFlag] = useState({});
     const [loading, setLoading] = useState(false);
+    const trendsBoxVisibilityState = useGlobalState();
 
     useEffect(() => {
         // woeid 1 is worldwide
@@ -61,6 +62,7 @@ const Map = ({ center, zoom }) => {
                     return b.tweet_volume - a.tweet_volume;
                 });*/
                 setTrendsInfo(data);
+                trendsBoxVisibilityState.show();
             });
     }
 

@@ -1,22 +1,32 @@
-import { useState } from 'react'
-
 import TwitterLoader from './TwitterLoader'
 import Footer from './Footer'
 import Eye from './Eye'
+import { createState, useState } from '@hookstate/core';
+
+
+// trendsBoxVisibility as global state
+const globalState = createState(true);
+const wrapState = (s) => ({
+    get: () => s.value,
+    show: () => s.set(true)
+});
+// import and use it in another component
+export const useGlobalState = () => wrapState(useState(globalState));
+
 
 
 const TrendsBox = ({ info, flag, loading }) => {
-    const [boxVisibility, setBoxVisibility] = useState(true);
+    const trendsBoxVisibility = useState(globalState);
 
     const toggleBox = () => {
-        setBoxVisibility(!boxVisibility);
+        trendsBoxVisibility.set(!trendsBoxVisibility.get());
     }
     return (
         <>
             <Eye onClick={toggleBox} />
 
             {
-                boxVisibility &&
+                trendsBoxVisibility.get() &&
 
                 <section className="box">
                     <header><h1>Twitter Trends</h1></header>
