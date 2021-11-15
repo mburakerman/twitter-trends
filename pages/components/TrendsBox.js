@@ -13,7 +13,13 @@ const wrapState = (s) => ({
 // import and use it in another component
 export const useGlobalState = () => wrapState(useState(globalState));
 
-
+function getFlagEmoji(countryCode){
+    const codePoints = countryCode
+    .toUpperCase()
+    .split('')
+    .map(char =>  127397 + char.charCodeAt());
+  return String.fromCodePoint(...codePoints) + ' ';
+}
 
 const TrendsBox = ({ info, flag, loading }) => {
     const trendsBoxVisibility = useState(globalState);
@@ -34,7 +40,7 @@ const TrendsBox = ({ info, flag, loading }) => {
                     <div className="trends-box">
                         {info &&
                             <h3 className="trends-box__title">
-                                {flag && <img src={flag} width="20" loading="lazy" />}
+                                {getFlagEmoji(flag)}
                                 {info.locations[0].name} Trends
                             </h3>
                         }

@@ -1,6 +1,6 @@
 .trends-box {
 	position: absolute;
-	top: 55px;
+	top: 53px;
 	right: 0px;
 	width: var(--boxWidth);
 	background-color:var(--boxBackgroundColor);
@@ -16,7 +16,7 @@
 
 .trends-box__title {
 	color: #fff;
-	font-size: 20px;
+	font-size: 18px;
 	font-weight: bold;
 	padding: .5em 1em;
 	z-index: 2;

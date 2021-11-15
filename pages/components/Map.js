@@ -6,7 +6,7 @@ import TrendsBox, { useGlobalState } from './TrendsBox'
 const Map = ({ center, zoom }) => {
     const [trendsInfo, setTrendsInfo] = useState({});
     const [clickedPosition, setClickedPosition] = useState({});
-    const [clickedPositionCountryFlag, setClickedPositionCountryFlag] = useState({});
+    const [clickedPositionCountryCode, setClickedPositionCountryCode] = useState('');
     const [loading, setLoading] = useState(false);
     const trendsBoxVisibilityState = useGlobalState();
 
@@ -36,9 +36,21 @@ const Map = ({ center, zoom }) => {
                 const countryCode = res[0].countryCode;
                 fetchTrends(woeid);
                 if (woeid !== 1) {
-                    fetchCountryFlag(countryCode);
+                    setClickedPositionCountryCode(countryCode);
+                    updateFavicon(countryCode);
                 }
             });
+    }
+    function updateFavicon(countryCode){
+        function getFlagEmoji(countryCode){
+            const codePoints = countryCode
+            .toUpperCase()
+            .split('')
+            .map(char =>  127397 + char.charCodeAt());
+          return String.fromCodePoint(...codePoints);
+        }
+        document.getElementById("favicon").href = "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>" + getFlagEmoji(countryCode) + "</text></svg>";
+
     }
     async function fetchTrends(woeid) {
         setLoading(true);
@@ -66,24 +78,6 @@ const Map = ({ center, zoom }) => {
             });
     }
 
-    async function fetchCountryFlag(countryCode) {
-        await fetch("/api/country-flag", {
-            method: "post",
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                countryCode: countryCode
-            })
-        })
-            .then(res => res.json())
-            .then(r => {
-                setClickedPositionCountryFlag(r);
-                // update favicon
-                document.getElementById("favicon").href = r.countryFlagUrl;
-            });
-    }
     return (
         <div id="map">
             <GoogleMapReact
@@ -100,7 +94,7 @@ const Map = ({ center, zoom }) => {
 
             {
                 trendsInfo.locations &&
-                <TrendsBox info={trendsInfo} flag={clickedPositionCountryFlag.countryFlagUrl} loading={loading} />
+                <TrendsBox info={trendsInfo} flag={clickedPositionCountryCode} loading={loading} />
             }
         </div>
     )
