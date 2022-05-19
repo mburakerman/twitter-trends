@@ -21,8 +21,9 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "pages/_app.js", "pages/helpers/getFlagEmoji.js"  ],
+    "**/*.tsx", 
+    "pages/_app.tsx",
+  ],
   "exclude": [
     "node_modules"
   ]
