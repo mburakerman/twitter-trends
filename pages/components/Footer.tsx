@@ -1,5 +1,4 @@
-const Footer = () => {
-    return (
+const Footer = () : JSX.Element => (
         <footer>
             <details>
                 <summary>What is this?</summary>
@@ -12,7 +11,6 @@ const Footer = () => {
                 <p><a href="https://mburakerman.github.io" target="_blank" rel="noopener">Mehmet Burak Erman</a></p>
             </div>
         </footer>
-    )
-};
+);
 
 export default Footer;

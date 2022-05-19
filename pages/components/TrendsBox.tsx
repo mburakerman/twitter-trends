@@ -2,24 +2,18 @@ import TwitterLoader from './TwitterLoader'
 import Footer from './Footer'
 import Eye from './Eye'
 import { createState, useState } from '@hookstate/core';
+import { getFlagEmoji } from "../helpers/getFlagEmoji.js"
 
 
 // trendsBoxVisibility as global state
 const globalState = createState(true);
-const wrapState = (s) => ({
+const wrapState = (s: any) => ({
     get: () => s.value,
     show: () => s.set(true)
 });
 // import and use it in another component
 export const useGlobalState = () => wrapState(useState(globalState));
 
-function getFlagEmoji(countryCode){
-    const codePoints = countryCode
-    .toUpperCase()
-    .split('')
-    .map(char =>  127397 + char.charCodeAt());
-  return String.fromCodePoint(...codePoints) + ' ';
-}
 
 const TrendsBox = ({ info, flag, loading }) => {
     const trendsBoxVisibility = useState(globalState);

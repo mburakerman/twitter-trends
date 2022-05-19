@@ -2,17 +2,29 @@ import { useState, useEffect } from 'react'
 import GoogleMapReact from 'google-map-react'
 import MapMarker from './MapMarker'
 import TrendsBox, { useGlobalState } from './TrendsBox'
+import { updateFavicon } from "../helpers/updateFavicon.js"
+
+interface TrendsInterface {
+    locations?: Array<any>;
+    trends?: Array<any>;
+}
+interface ClickedPositionInterface {
+    lat?: number;
+    lng?: number;
+}
+
+const WOEID_WORDWIDE = 1;
 
 const Map = ({ center, zoom }) => {
-    const [trendsInfo, setTrendsInfo] = useState({});
-    const [clickedPosition, setClickedPosition] = useState({});
-    const [clickedPositionCountryCode, setClickedPositionCountryCode] = useState('');
-    const [loading, setLoading] = useState(false);
+    const [trendsInfo, setTrendsInfo] = useState <TrendsInterface>({});
+    const [clickedPosition, setClickedPosition] = useState<ClickedPositionInterface>({});
+    const [clickedPositionCountryCode, setClickedPositionCountryCode] = useState<string>('');
+    const [loading, setLoading] = useState<boolean>(false);
     const trendsBoxVisibilityState = useGlobalState();
 
+
     useEffect(() => {
-        // woeid 1 is worldwide
-        fetchTrends("1");
+        fetchTrends(WOEID_WORDWIDE);
     }, []);
 
     async function getClickedAreasWoeid(e) {
@@ -35,24 +47,13 @@ const Map = ({ center, zoom }) => {
                 const woeid = res[0].woeid;
                 const countryCode = res[0].countryCode;
                 fetchTrends(woeid);
-                if (woeid !== 1) {
+                if (woeid !== WOEID_WORDWIDE) {
                     setClickedPositionCountryCode(countryCode);
                     updateFavicon(countryCode);
                 }
             });
     }
-    function updateFavicon(countryCode){
-        function getFlagEmoji(countryCode){
-            const codePoints = countryCode
-            .toUpperCase()
-            .split('')
-            .map(char =>  127397 + char.charCodeAt());
-          return String.fromCodePoint(...codePoints);
-        }
-        document.getElementById("favicon").href = "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>" + getFlagEmoji(countryCode) + "</text></svg>";
-
-    }
-    async function fetchTrends(woeid) {
+    async function fetchTrends(woeid: number) {
         setLoading(true);
 
         await fetch("/api/trends", {
@@ -87,7 +88,7 @@ const Map = ({ center, zoom }) => {
                 options={{
                     fullscreenControl: false,
                 }}
-                onClick={(e) => getClickedAreasWoeid(e)}
+                onClick={(e: any) => getClickedAreasWoeid(e)}
             >
                 {clickedPosition.lat && <MapMarker lat={clickedPosition.lat} lng={clickedPosition.lng} />}
             </GoogleMapReact>

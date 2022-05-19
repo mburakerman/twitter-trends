@@ -1,5 +1,5 @@
-import Head from 'next/head'
-import Map from "./components/Map"
+import Head from 'next/head';
+import Map from './components/Map';
 
 export default function Home() {
   return (
@@ -27,5 +27,5 @@ export default function Home() {
       <Map />
       <noscript><div><img src="https://mc.yandex.ru/watch/72763762" style={{ position: 'absolute', left: '-9999px' }} alt="" /></div></noscript>
     </div>
-  )
+  );
 }
