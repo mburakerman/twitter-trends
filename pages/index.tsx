@@ -1,7 +1,8 @@
-import Head from 'next/head';
-import Map from './components/Map';
+import Head from 'next/head'
+import Map from './components/Map'
+import React from 'react'
 
-export default function Home() {
+export default function Home () {
   return (
     <div>
       <Head>
@@ -20,12 +21,12 @@ export default function Home() {
                  trackLinks:true,
                  accurateTrackBounce:true
             });
-              `,
+              `
           }}
         />
       </Head>
       <Map />
       <noscript><div><img src="https://mc.yandex.ru/watch/72763762" style={{ position: 'absolute', left: '-9999px' }} alt="" /></div></noscript>
     </div>
-  );
+  )
 }

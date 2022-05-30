@@ -1,27 +1,32 @@
+import React, { FC } from 'react'
 import TwitterLoader from './TwitterLoader'
 import Footer from './Footer'
 import Eye from './Eye'
-import { createState, useState } from '@hookstate/core';
-import { getFlagEmoji } from "../helpers/getFlagEmoji.js"
-
+import { createState, useState } from '@hookstate/core'
+import { getFlagEmoji } from '../helpers/getFlagEmoji.js'
 
 // trendsBoxVisibility as global state
-const globalState = createState(true);
+const globalState = createState(true)
 const wrapState = (s: any) => ({
-    get: () => s.value,
-    show: () => s.set(true)
-});
+  get: () => s.value,
+  show: () => s.set(true)
+})
 // import and use it in another component
-export const useGlobalState = () => wrapState(useState(globalState));
+export const useGlobalState = () => wrapState(useState(globalState))
 
+interface TrendsBoxProps {
+    info?: any,
+    flag?: string,
+    loading?: boolean,
+}
 
-const TrendsBox = ({ info, flag, loading }) => {
-    const trendsBoxVisibility = useState(globalState);
+const TrendsBox : FC<TrendsBoxProps> = ({ info, flag, loading }) => {
+  const trendsBoxVisibility = useState(globalState)
 
-    const toggleBox = () => {
-        trendsBoxVisibility.set(!trendsBoxVisibility.get());
-    }
-    return (
+  const toggleBox = () => {
+    trendsBoxVisibility.set(!trendsBoxVisibility.get())
+  }
+  return (
         <>
             <Eye onClick={toggleBox} />
 
@@ -40,25 +45,25 @@ const TrendsBox = ({ info, flag, loading }) => {
                         }
                         <ul className="trends-box__trends">
                             {
-                                info ? info.trends.map(function (item, index) {
-                                    if (!item.tweet_volume) return;
-                                    return <li key={index}>
-                                        <a href={item.url} target="_blank" rel="noopener">
+                                info
+                                  ? info.trends.map(function (item, index) {
+                                    return item.tweet_volume && <li key={index}>
+                                        <a href={item.url} target="_blank" rel="noopener noreferrer">
                                             <p>{item.name}</p>
                                             <small>{item.tweet_volume && new Intl.NumberFormat(['ban', 'id']).format(item.tweet_volume)} Tweet</small>
                                         </a>
-                                    </li>;
-                                }) : <li><a><p>😞 No trend found</p></a></li>
+                                    </li>
+                                  })
+                                  : <li><a><p>😞 No trend found</p></a></li>
                             }
                         </ul>
                         {loading && <TwitterLoader />}
                     </div>
-
                     <Footer />
                 </section>
             }
         </>
-    )
+  )
 }
 
-export default TrendsBox;
+export default TrendsBox
