@@ -103,12 +103,4 @@ const Map :FC<MapProps> = ({ center, zoom }) => {
   )
 }
 
-Map.defaultProps = {
-  center: {
-    lat: 41.015137,
-    lng: 8.979530
-  },
-  zoom: 1
-}
-
 export default Map
