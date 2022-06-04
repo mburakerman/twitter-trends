@@ -1,7 +1,15 @@
 import Head from 'next/head'
-import Map from "./components/Map"
+import Map from '../src/components/Map'
+import React from 'react'
 
-export default function Home() {
+const mapDefaultProps = {
+  center: {
+    lat: 41.015137,
+    lng: 8.979530
+  },
+  zoom: 1
+}
+export default function Home () {
   return (
     <div>
       <Head>
@@ -20,11 +28,11 @@ export default function Home() {
                  trackLinks:true,
                  accurateTrackBounce:true
             });
-              `,
+              `
           }}
         />
       </Head>
-      <Map />
+      <Map zoom={mapDefaultProps.zoom} center={mapDefaultProps.center}/>
       <noscript><div><img src="https://mc.yandex.ru/watch/72763762" style={{ position: 'absolute', left: '-9999px' }} alt="" /></div></noscript>
     </div>
   )

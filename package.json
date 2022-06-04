@@ -1,6 +1,6 @@
 {
   "name": "twitter-trends",
-  "version": "0.1.0",
+  "version": "1.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -8,11 +8,24 @@
     "start": "next start"
   },
   "dependencies": {
-    "@hookstate/core": "^3.0.6",
     "google-map-react": "^2.1.9",
     "next": "10.0.2",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "twit": "^2.2.11"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.32",
+    "@types/react": "^18.0.9",
+    "@types/react-dom": "^18.0.3",
+    "@typescript-eslint/eslint-plugin": "^5.26.0",
+    "@typescript-eslint/parser": "^5.26.0",
+    "eslint": "^8.16.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.2.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-react": "^7.30.0",
+    "typescript": "^4.6.4"
   }
 }
