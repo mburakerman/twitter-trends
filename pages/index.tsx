@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Map from './components/Map'
+import Map from '../src/components/Map'
 import React from 'react'
 
 const mapDefaultProps = {
