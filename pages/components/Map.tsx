@@ -1,8 +1,9 @@
-import React, { FC, useState, useEffect } from 'react'
+import React, { FC, useState, useEffect, useContext } from 'react'
 import GoogleMapReact from 'google-map-react'
 import MapMarker from './MapMarker'
-import TrendsBox, { useGlobalState } from './TrendsBox'
+import TrendsBox from './TrendsBox'
 import { updateFavicon } from '../helpers/updateFavicon.js'
+import { GlobalContext } from '../store/index'
 
 const WOEID_WORDWIDE = 1
 interface TrendsInterface {
@@ -23,7 +24,7 @@ const Map :FC<MapProps> = ({ center, zoom }) => {
   const [clickedPosition, setClickedPosition] = useState<ClickedPositionInterface>({})
   const [clickedPositionCountryCode, setClickedPositionCountryCode] = useState<string>('')
   const [loading, setLoading] = useState<boolean>(false)
-  const trendsBoxVisibilityState = useGlobalState()
+  const { setTrendsBoxVisibility } = useContext(GlobalContext)
 
   useEffect(() => {
     fetchTrends(WOEID_WORDWIDE)
@@ -77,7 +78,7 @@ const Map :FC<MapProps> = ({ center, zoom }) => {
                     return b.tweet_volume - a.tweet_volume;
                 }); */
         setTrendsInfo(data)
-        trendsBoxVisibilityState.show()
+        setTrendsBoxVisibility(true)
       })
   }
 
