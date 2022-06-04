@@ -31,11 +31,11 @@ const Map :FC<MapProps> = ({ center, zoom }) => {
   }, [])
 
   async function getClickedAreasWoeid (e) {
-    const clickedPosition = {
+    const initialClickedPosition = {
       lat: e.lat,
       lng: e.lng
     }
-    setClickedPosition(clickedPosition)
+    setClickedPosition(initialClickedPosition)
 
     await fetch('/api/closest', {
       method: 'post',
@@ -43,7 +43,7 @@ const Map :FC<MapProps> = ({ center, zoom }) => {
         Accept: 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(clickedPosition)
+      body: JSON.stringify(initialClickedPosition)
     })
       .then(res => res.json())
       .then(function (res) {
