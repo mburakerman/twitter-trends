@@ -58,3 +58,8 @@
 	opacity: .6;
 	font-size: smaller;
 }
+
+.country-select {
+	width: 100px;
+	margin-left: auto;
+}

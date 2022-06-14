@@ -4,6 +4,7 @@ import Footer from './Footer'
 import Eye from './Eye'
 import { getFlagEmoji } from '../helpers/getFlagEmoji.js'
 import { GlobalContext } from '../store/index'
+import CountrySelect from './CountrySelect'
 
 interface TrendsBoxProps {
     info?: any,
@@ -27,7 +28,7 @@ const TrendsBox : FC<TrendsBoxProps> = ({ info, flag, loading }) => {
                         {info &&
                             <h3 className="trends-box__title">
                                 {getFlagEmoji(flag)}
-                                {info.locations[0].name} Trends
+                                {info.locations[0].name} Trends   <CountrySelect />
                             </h3>
                         }
                         <ul className="trends-box__trends">

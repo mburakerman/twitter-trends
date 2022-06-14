@@ -4,12 +4,10 @@ import MapMarker from './MapMarker'
 import TrendsBox from './TrendsBox'
 import { updateFavicon } from '../helpers/updateFavicon.js'
 import { GlobalContext } from '../store/index'
+import { getClosestLocation } from '../helpers/getClosestLocation.js'
+import { getTrends } from '../helpers/getTrends.js'
 
 const WOEID_WORDWIDE = 1
-interface TrendsInterface {
-    locations?: Array<any>;
-    trends?: Array<any>;
-}
 interface ClickedPositionInterface {
     lat?: number;
     lng?: number;
@@ -20,9 +18,9 @@ interface MapProps {
 }
 
 const Map :FC<MapProps> = ({ center, zoom }) => {
-  const [trendsInfo, setTrendsInfo] = useState <TrendsInterface>({})
-  const [clickedPosition, setClickedPosition] = useState<ClickedPositionInterface>({})
-  const [clickedPositionCountryCode, setClickedPositionCountryCode] = useState<string>('')
+  const { trendsInfo, setTrendsInfo } = useContext(GlobalContext)
+  const { clickedPosition, setClickedPosition } = useContext(GlobalContext)
+  const { clickedPositionCountryCode, setClickedPositionCountryCode } = useContext(GlobalContext)
   const [loading, setLoading] = useState<boolean>(false)
   const { setTrendsBoxVisibility } = useContext(GlobalContext)
 
@@ -37,18 +35,11 @@ const Map :FC<MapProps> = ({ center, zoom }) => {
     }
     setClickedPosition(initialClickedPosition)
 
-    await fetch('/api/closest', {
-      method: 'post',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(initialClickedPosition)
-    })
-      .then(res => res.json())
+    await getClosestLocation(initialClickedPosition)
       .then(function (res) {
         const woeid = res[0].woeid
         const countryCode = res[0].countryCode
+
         fetchTrends(woeid)
         if (woeid !== WOEID_WORDWIDE) {
           setClickedPositionCountryCode(countryCode)
@@ -59,24 +50,10 @@ const Map :FC<MapProps> = ({ center, zoom }) => {
   async function fetchTrends (woeid: number) {
     setLoading(true)
 
-    await fetch('/api/trends', {
-      method: 'post',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        woeid
-      })
-    })
-      .then(res => res.json())
+    await getTrends(woeid)
       .then(function (response) {
         setLoading(false)
         const data = response[0]
-        // sort data based on tweet volume
-        /* data.trends.sort(function (a, b) {
-                    return b.tweet_volume - a.tweet_volume;
-                }); */
         setTrendsInfo(data)
         setTrendsBoxVisibility(true)
       })
@@ -86,7 +63,7 @@ const Map :FC<MapProps> = ({ center, zoom }) => {
         <div id="map">
             <GoogleMapReact
                 bootstrapURLKeys={{ key: 'AIzaSyBKcbWgVYRSdCv0PCn6dCOvgdV7MjcE-R0' }}
-                defaultCenter={center}
+                defaultCenter={ center }
                 defaultZoom={zoom}
                 options={{
                   fullscreenControl: false
