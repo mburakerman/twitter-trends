@@ -4,8 +4,7 @@ import MapMarker from './MapMarker'
 import TrendsBox from './TrendsBox'
 import { updateFavicon } from '../helpers/updateFavicon.js'
 import { GlobalContext, IClickedPosition } from '../store/index'
-import { getClosestLocation } from '../helpers/getClosestLocation.js'
-import { getTrends } from '../helpers/getTrends.js'
+import { getClosestLocation, getTrends } from '../service/index'
 
 const WOEID_WORDWIDE = 1
 interface MapProps {

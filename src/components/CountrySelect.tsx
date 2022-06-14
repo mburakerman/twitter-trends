@@ -1,7 +1,6 @@
 import React, { FC, useEffect, useState, useContext } from 'react'
 import { GlobalContext } from '../store/index'
-import { getClosestLocation } from '../helpers/getClosestLocation.js'
-import { getTrends } from '../helpers/getTrends.js'
+import { getClosestLocation, getTrends } from '../service/index'
 import { updateFavicon } from '../helpers/updateFavicon.js'
 
 const WOEID_WORDWIDE = 1
