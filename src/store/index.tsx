@@ -1,6 +1,6 @@
 import React, { createContext, FC, useState, useMemo } from 'react'
 
-interface IClickedPosition {
+export interface IClickedPosition {
   lat?: number;
   lng?: number;
 }
@@ -51,7 +51,14 @@ const GlobalProvider : FC<IGlobalProvider> = ({ children }) => {
   )
 
   return (
-    <GlobalContext.Provider value={{ ...trendsBoxVisibilityValue, ...clickedPositionValue, ...trendsInfoValue, ...clickedPositionCountryCodeValue }}>
+    <GlobalContext.Provider
+    value={{
+      ...trendsBoxVisibilityValue,
+      ...clickedPositionValue,
+      ...trendsInfoValue,
+      ...clickedPositionCountryCodeValue
+    }}
+      >
       {children}
     </GlobalContext.Provider>
   )

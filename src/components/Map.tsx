@@ -3,17 +3,13 @@ import GoogleMapReact from 'google-map-react'
 import MapMarker from './MapMarker'
 import TrendsBox from './TrendsBox'
 import { updateFavicon } from '../helpers/updateFavicon.js'
-import { GlobalContext } from '../store/index'
+import { GlobalContext, IClickedPosition } from '../store/index'
 import { getClosestLocation } from '../helpers/getClosestLocation.js'
 import { getTrends } from '../helpers/getTrends.js'
 
 const WOEID_WORDWIDE = 1
-interface ClickedPositionInterface {
-    lat?: number;
-    lng?: number;
-}
 interface MapProps {
-    center: ClickedPositionInterface;
+    center: IClickedPosition;
     zoom: number;
 }
 
