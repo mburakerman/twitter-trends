@@ -1,53 +1,66 @@
 import React, { FC, useEffect, useState, useContext } from 'react'
 import { GlobalContext } from '../store/index'
-import { getClosestLocation, getTrends } from '../service/index'
+import { getTrends } from '../service/index'
 import { updateFavicon } from '../helpers/updateFavicon.js'
 
-const WOEID_WORDWIDE = 1
+interface IAvailableLocationItem {
+  name: string;
+  placeType?: {
+    code: number;
+    name: string;
+  };
+  url?: string;
+  parentid?: number;
+  country?: string;
+  woeid?: number;
+  countryCode?: any;
+}
+interface IAvailableLocations extends Array<IAvailableLocationItem>{}
+
 const CountrySelect : FC = () => {
   const [countries, setCountries] = useState<any>()
+  const [availableLocations, setAvailableLocations] = useState<IAvailableLocations>([])
   const { setClickedPosition } = useContext(GlobalContext)
   const { setTrendsInfo } = useContext(GlobalContext)
   const { setTrendsBoxVisibility } = useContext(GlobalContext)
   const { setClickedPositionCountryCode } = useContext(GlobalContext)
 
   useEffect(() => {
-    const fetchData = async () => {
+    fetchCountries()
+    fetchAvailableLocations()
+  }, [])
+
+  async function fetchCountries () {
+    try {
       const countriesRequest = await fetch('/api/countries')
       const countriesData = await countriesRequest.json()
       setCountries(countriesData)
+    } catch (error) {
+      console.error(error)
     }
-
-    fetchData().catch(console.error)
-  }, [])
-
-  const handleCountryChange = (e: any) => {
-    let latLngArr = e.target?.value.split(',')
-    latLngArr = latLngArr.map(Number)
-    const clickedPos = { lat: latLngArr[0], lng: latLngArr[1] }
-
-    getClickedAreasWoeid(clickedPos)
   }
 
-  async function getClickedAreasWoeid (e) {
-    const initialClickedPosition = {
-      lat: e.lat,
-      lng: e.lng
-    }
-    setClickedPosition(initialClickedPosition)
-
-    await getClosestLocation(initialClickedPosition)
-      .then(function (res) {
-        const woeid = res[0].woeid
-        const countryCode = res[0].countryCode
-
-        fetchTrends(woeid)
-        if (woeid !== WOEID_WORDWIDE) {
-          setClickedPositionCountryCode(countryCode)
-          updateFavicon(countryCode)
-        }
-      })
+  async function fetchAvailableLocations () {
+    const availableRequest = await fetch('/api/available')
+    const availableData = await availableRequest.json()
+    // if parentid = 1, it's a country
+    const availableDataCountry = availableData.filter((item : IAvailableLocationItem) => item?.parentid === 1)
+    setAvailableLocations(availableDataCountry)
   }
+
+  const handleCountryChange = async (e: any) => {
+    const selectedCountry = JSON.parse(e?.target.value)
+    await fetchTrends(selectedCountry?.woeid)
+    updateFavicon(selectedCountry?.countryCode)
+    setClickedPositionCountryCode(selectedCountry?.countryCode)
+    updateMapMarker(selectedCountry)
+  }
+  const updateMapMarker = (selectedCountry : any) => {
+    const selectedCountryLatLng = countries.find(item => item?.alpha2Code === selectedCountry?.countryCode)?.latlng
+    const selectedCountryLatLngObj = { lat: selectedCountryLatLng[0], lng: selectedCountryLatLng[1] }
+    setClickedPosition(selectedCountryLatLngObj)
+  }
+
   async function fetchTrends (woeid: number) {
     await getTrends(woeid)
       .then(function (response) {
@@ -58,13 +71,13 @@ const CountrySelect : FC = () => {
   }
 
   return (
-    <select className="country-select" onChange={handleCountryChange}>
+      <select className="country-select" onChange={handleCountryChange}>
         {
-        countries && countries.map((country: any, index: number) => {
-          return <option key={index} value={country.latlng}>{country?.name}</option>
-        })
+          availableLocations && availableLocations?.map((item: IAvailableLocationItem, index: number) => {
+            return <option key={index} value={JSON.stringify(item)}>{item?.name}</option>
+          })
         }
-    </select>
+      </select>
   )
 }
 
