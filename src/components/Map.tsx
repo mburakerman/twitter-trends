@@ -2,7 +2,7 @@ import React, { FC, useState, useEffect, useContext } from 'react'
 import GoogleMapReact from 'google-map-react'
 import MapMarker from './MapMarker'
 import TrendsBox from './TrendsBox'
-import { updateFavicon } from '../helpers/updateFavicon.js'
+import { updateFavicon } from '../helpers/updateFavicon'
 import { GlobalContext, IClickedPosition } from '../store/index'
 import { getClosestLocation, getTrends } from '../service/index'
 

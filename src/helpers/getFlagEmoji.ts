@@ -1,7 +1,7 @@
-export function getFlagEmoji (countryCode) {
+export function getFlagEmoji (countryCode : string) {
   const codePoints = countryCode
     .toUpperCase()
     .split('')
-    .map(char => 127397 + char.charCodeAt())
+    .map((char : any) => 127397 + char.charCodeAt())
   return String.fromCodePoint(...codePoints) + ' '
 }

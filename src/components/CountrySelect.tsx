@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState, useContext } from 'react'
 import { GlobalContext } from '../store/index'
 import { getTrends } from '../service/index'
-import { updateFavicon } from '../helpers/updateFavicon.js'
+import { updateFavicon } from '../helpers/updateFavicon'
 
 interface IAvailableLocationItem {
   name: string;

@@ -2,7 +2,7 @@ import React, { FC, useContext } from 'react'
 import TwitterLoader from './TwitterLoader'
 import Footer from './Footer'
 import Eye from './Eye'
-import { getFlagEmoji } from '../helpers/getFlagEmoji.js'
+import { getFlagEmoji } from '../helpers/getFlagEmoji'
 import { GlobalContext } from '../store/index'
 import CountrySelect from './CountrySelect'
 
