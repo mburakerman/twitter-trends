@@ -1,6 +1,8 @@
 import Head from 'next/head'
 import Map from '../src/components/Map'
 import React from 'react'
+import { dehydrate, QueryClient } from 'react-query'
+import { getCountries, getAvailableCountries } from '../src/service/index'
 
 const mapDefaultProps = {
   center: {
@@ -36,4 +38,17 @@ export default function Home () {
       <noscript><div><img src="https://mc.yandex.ru/watch/72763762" style={{ position: 'absolute', left: '-9999px' }} alt="" /></div></noscript>
     </div>
   )
+}
+
+export async function getServerSideProps () {
+  const queryClient = new QueryClient()
+
+  await queryClient.prefetchQuery('countries', getCountries)
+  await queryClient.prefetchQuery('availableCountries', getAvailableCountries)
+
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient)
+    }
+  }
 }
