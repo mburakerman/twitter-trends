@@ -2,23 +2,16 @@ import { IClickedPosition } from '../store/index'
 
 const BASE_URL = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://twitter-trends.vercel.app'
 
-export function getClosestLocation (clickedPosition : IClickedPosition) {
-  return new Promise((resolve, reject) => {
-    fetch(BASE_URL + '/api/closest', {
-      method: 'post',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(clickedPosition)
-    })
-      .then((res) => {
-        resolve(res.json())
-      })
-      .catch((err: any) => {
-        reject(err)
-      })
+export const getClosestLocation = async (clickedPosition : IClickedPosition) => {
+  const res = await fetch(BASE_URL + '/api/closest', {
+    method: 'post',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(clickedPosition)
   })
+  return await res.json()
 }
 
 export const getTrends = async (woeid : number) => {
