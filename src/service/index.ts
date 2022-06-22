@@ -21,25 +21,18 @@ export function getClosestLocation (clickedPosition : IClickedPosition) {
   })
 }
 
-export function getTrends (woeid : number) {
-  return new Promise((resolve, reject) => {
-    fetch(BASE_URL + '/api/trends', {
-      method: 'post',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        woeid
-      })
+export const getTrends = async (woeid : number) => {
+  const res = await fetch(BASE_URL + '/api/trends', {
+    method: 'post',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      woeid
     })
-      .then(res => {
-        resolve(res.json())
-      })
-      .catch((err: any) => {
-        reject(err)
-      })
   })
+  return await res.json()
 }
 
 export const getCountries = async () => {
