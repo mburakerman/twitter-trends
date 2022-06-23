@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Map from '../src/components/Map'
 import React from 'react'
 import { dehydrate, QueryClient } from 'react-query'
-import { getCountries, getAvailableCountries } from '../src/service/index'
+import { getCountries, getAvailableCountries, getTrends } from '../src/service/index'
 
 const mapDefaultProps = {
   center: {
@@ -11,6 +11,7 @@ const mapDefaultProps = {
   },
   zoom: 1
 }
+const WOEID_WORDWIDE = 1
 export default function Home () {
   return (
     <div>
@@ -45,6 +46,7 @@ export async function getServerSideProps () {
 
   await queryClient.prefetchQuery('countries', getCountries)
   await queryClient.prefetchQuery('availableCountries', getAvailableCountries)
+  await queryClient.prefetchQuery('trends', () => getTrends(WOEID_WORDWIDE))
 
   return {
     props: {
