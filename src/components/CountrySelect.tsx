@@ -1,6 +1,7 @@
 import React, { FC, useContext } from 'react'
+import Select from 'react-select'
 import { GlobalContext } from '../store/index'
-import { getTrends, getCountries, getAvailableCountries, IAvailableCountries, IAvailableCountriesItem } from '../service/index'
+import { getTrends, getCountries, getAvailableCountries } from '../service/index'
 import { updateFavicon } from '../helpers/updateFavicon'
 import { useQuery } from 'react-query'
 
@@ -11,10 +12,10 @@ const CountrySelect : FC = () => {
   const { setClickedPositionCountryCode } = useContext(GlobalContext)
 
   const { data: countries } = useQuery('countries', getCountries)
-  const { data: availableCountries } = useQuery<IAvailableCountries>('availableCountries', getAvailableCountries)
+  const { data: availableCountries } = useQuery('availableCountries', getAvailableCountries)
 
   const handleCountryChange = async (e: any) => {
-    const selectedCountry = JSON.parse(e?.target.value)
+    const selectedCountry = JSON.parse(e?.value)
     await fetchTrends(selectedCountry?.woeid)
     updateFavicon(selectedCountry?.countryCode)
     setClickedPositionCountryCode(selectedCountry?.countryCode)
@@ -36,13 +37,12 @@ const CountrySelect : FC = () => {
   }
 
   return (
-      <select className="country-select" onChange={handleCountryChange}>
-        {
-          availableCountries && availableCountries?.map((item: IAvailableCountriesItem, index: number) => {
-            return <option key={index} value={JSON.stringify(item)}>{item?.name}</option>
-          })
-        }
-      </select>
+      <Select
+        placeholder={'Select a trends available country'}
+        className="country-select"
+        options={availableCountries}
+        onChange={handleCountryChange}
+      />
   )
 }
 

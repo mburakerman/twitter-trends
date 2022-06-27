@@ -25,10 +25,11 @@ const TrendsBox : FC<TrendsBoxProps> = ({ info, flag, loading }) => {
                     <header><h1>Twitter Trends</h1></header>
 
                     <div className="trends-box">
+                        <CountrySelect />
                         {info &&
                             <h3 className="trends-box__title">
                                 {getFlagEmoji(flag)}
-                                {info.locations[0].name} Trends   <CountrySelect />
+                                {info.locations[0].name} Trends
                             </h3>
                         }
                         <ul className="trends-box__trends">

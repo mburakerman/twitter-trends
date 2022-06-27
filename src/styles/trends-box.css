@@ -60,6 +60,9 @@
 }
 
 .country-select {
-	width: 100px;
+	max-width: calc(100% - 30px);
 	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 10px;
+	color:#555;
 }

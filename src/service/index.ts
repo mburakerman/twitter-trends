@@ -51,5 +51,11 @@ export const getAvailableCountries = async () => {
   const res = await fetch(BASE_URL + '/api/available')
   const data = await res.json()
   // if parentid = 1, it's a country
-  return data?.filter((item : IAvailableCountriesItem) => item?.parentid === 1) as IAvailableCountries
+  const countries = data?.filter((item : IAvailableCountriesItem) => item?.parentid === 1) as IAvailableCountries
+  return countries.map((country: IAvailableCountriesItem) => {
+    return {
+      value: JSON.stringify(country),
+      label: country.name
+    }
+  })
 }
