@@ -1,4 +1,4 @@
-import TWITTER from './_twitter.js'
+import TWITTER from './_twitter.ts'
 
 export default async (req, res) => {
   const woeid = req.body.woeid
