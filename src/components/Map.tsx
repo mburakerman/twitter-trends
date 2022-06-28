@@ -6,6 +6,7 @@ import { updateFavicon } from '../helpers/updateFavicon'
 import { GlobalContext, IClickedPosition } from '../store/index'
 import { getClosestLocation, getTrends } from '../service/index'
 import { useQuery } from 'react-query'
+import { dispatch } from 'use-bus'
 
 const WOEID_WORDWIDE = 1
 interface MapProps {
@@ -47,6 +48,7 @@ const Map :FC<MapProps> = ({ center, zoom }) => {
         setWoeid(res[0].woeid)
         setCountryCode(res[0].countryCode)
         refechTrends()
+        dispatch('MAP_CLICKED')
       })
   }
 
@@ -65,7 +67,7 @@ const Map :FC<MapProps> = ({ center, zoom }) => {
           </GoogleMapReact>
 
           {
-            trendsInfo.locations &&
+            trendsInfo && trendsInfo.locations &&
             <TrendsBox info={trendsInfo} flag={clickedPositionCountryCode} loading={loading} />
           }
       </div>
