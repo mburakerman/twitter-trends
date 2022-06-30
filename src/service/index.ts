@@ -1,8 +1,8 @@
-import { IClickedPosition } from '../store/index'
+import { ILatLngPosition } from '../store/index'
 
 const BASE_URL = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://twitter-trends.vercel.app'
 
-export const getClosestLocation = async (clickedPosition : IClickedPosition) => {
+export const getClosestLocation = async (clickedPosition : ILatLngPosition) => {
   const res = await fetch(BASE_URL + '/api/closest', {
     method: 'post',
     headers: {
