@@ -8,6 +8,10 @@ interface ITrendsInfo {
   locations?: Array<any>;
   trends?: Array<any>;
 }
+interface IMapCenter {
+  lat: number;
+  lng:number
+}
 
 interface IGlobalContext {
   trendsBoxVisibility: boolean | null,
@@ -18,6 +22,8 @@ interface IGlobalContext {
   setTrendsInfo : (arg:ITrendsInfo) => void,
   clickedPositionCountryCode: string,
   setClickedPositionCountryCode: (arg: string) => void,
+  mapCenter :IMapCenter
+  setMapCenter : (arg:any) => void
 }
 export const GlobalContext = createContext<IGlobalContext>(undefined)
 
@@ -50,13 +56,23 @@ const GlobalProvider : FC<IGlobalProvider> = ({ children }) => {
     [clickedPositionCountryCode]
   )
 
+  const [mapCenter, setMapCenter] = useState<IGlobalContext['mapCenter']>({
+    lat: 41.015137,
+    lng: 8.979530
+  })
+  const mapCenterValue = useMemo(
+    () => ({ mapCenter, setMapCenter }),
+    [mapCenter]
+  )
+
   return (
     <GlobalContext.Provider
     value={{
       ...trendsBoxVisibilityValue,
       ...clickedPositionValue,
       ...trendsInfoValue,
-      ...clickedPositionCountryCodeValue
+      ...clickedPositionCountryCodeValue,
+      ...mapCenterValue
     }}
       >
       {children}

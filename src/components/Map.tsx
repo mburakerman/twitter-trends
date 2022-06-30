@@ -1,29 +1,27 @@
-import React, { FC, useState, useContext } from 'react'
+import React, { FC, useState, useContext, useEffect } from 'react'
 import GoogleMapReact from 'google-map-react'
 import MapMarker from './MapMarker'
 import TrendsBox from './TrendsBox'
 import { updateFavicon } from '../helpers/updateFavicon'
-import { GlobalContext, IClickedPosition } from '../store/index'
+import { GlobalContext } from '../store/index'
 import { getClosestLocation, getTrends } from '../service/index'
 import { useQuery } from 'react-query'
 import { dispatch } from 'use-bus'
 
 const WOEID_WORDWIDE = 1
-interface MapProps {
-  center: IClickedPosition;
-  zoom: number;
-}
 
-const Map :FC<MapProps> = ({ center, zoom }) => {
+const Map :FC = () => {
   const { trendsInfo, setTrendsInfo } = useContext(GlobalContext)
   const { clickedPosition, setClickedPosition } = useContext(GlobalContext)
   const { clickedPositionCountryCode, setClickedPositionCountryCode } = useContext(GlobalContext)
   const { setTrendsBoxVisibility } = useContext(GlobalContext)
+  const { mapCenter, setMapCenter } = useContext(GlobalContext)
   const [loading, setLoading] = useState<boolean>(false)
   const [woeid, setWoeid] = useState<number>(WOEID_WORDWIDE)
   const [countryCode, setCountryCode] = useState<string>()
 
   const { refetch: refechTrends } = useQuery(['trends', woeid], () => getTrends(woeid), {
+    enabled: false,
     onSuccess: (response) => {
       setLoading(false)
       setTrendsInfo(response[0])
@@ -35,6 +33,9 @@ const Map :FC<MapProps> = ({ center, zoom }) => {
       }
     }
   })
+  useEffect(() => {
+    refechTrends()
+  }, [])
 
   async function getClickedAreasWoeid (e) {
     const initialClickedPosition = {
@@ -42,6 +43,7 @@ const Map :FC<MapProps> = ({ center, zoom }) => {
       lng: e.lng
     }
     setClickedPosition(initialClickedPosition)
+    setMapCenter(initialClickedPosition)
 
     await getClosestLocation(initialClickedPosition)
       .then(function (res) {
@@ -56,12 +58,13 @@ const Map :FC<MapProps> = ({ center, zoom }) => {
       <div id="map">
           <GoogleMapReact
               bootstrapURLKeys={{ key: 'AIzaSyBKcbWgVYRSdCv0PCn6dCOvgdV7MjcE-R0' }}
-              defaultCenter={ center }
-              defaultZoom={zoom}
+              center= {mapCenter}
+              defaultZoom={1}
               options={{
                 fullscreenControl: false
               }}
               onClick={(e: any) => getClickedAreasWoeid(e)}
+              onChange = {() => setMapCenter}
           >
             {clickedPosition.lat && <MapMarker lat={clickedPosition.lat} lng={clickedPosition.lng} />}
           </GoogleMapReact>

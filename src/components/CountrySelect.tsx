@@ -11,6 +11,7 @@ const CountrySelect : FC = () => {
   const { setTrendsInfo } = useContext(GlobalContext)
   const { setTrendsBoxVisibility } = useContext(GlobalContext)
   const { setClickedPositionCountryCode } = useContext(GlobalContext)
+  const { setMapCenter } = useContext(GlobalContext)
   const [selectValue, setSelectValue] = useState<any>(null)
 
   /* A custom hook that listens to a custom event called `MAP_CLICKED` and when it is triggered, it
@@ -20,8 +21,12 @@ const CountrySelect : FC = () => {
     () => setSelectValue(null)
   )
 
-  const { data: countries } = useQuery('countries', getCountries)
-  const { data: availableCountries } = useQuery('availableCountries', getAvailableCountries)
+  const { data: countries } = useQuery('countries', getCountries, {
+    enabled: false
+  })
+  const { data: availableCountries } = useQuery('availableCountries', getAvailableCountries, {
+    enabled: false
+  })
 
   const handleCountryChange = async (e: any) => {
     const selectedCountry = JSON.parse(e?.value)
@@ -35,6 +40,7 @@ const CountrySelect : FC = () => {
     const selectedCountryLatLng = countries?.find(item => item?.alpha2Code === selectedCountry?.countryCode)?.latlng
     const selectedCountryLatLngObj = { lat: selectedCountryLatLng?.[0], lng: selectedCountryLatLng?.[1] }
     setClickedPosition(selectedCountryLatLngObj)
+    setMapCenter(selectedCountryLatLngObj)
   }
 
   async function fetchTrends (woeid: number) {
