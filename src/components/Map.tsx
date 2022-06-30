@@ -5,6 +5,7 @@ import TrendsBox from './TrendsBox'
 import { updateFavicon } from '../helpers/updateFavicon'
 import { GlobalContext, ILatLngPosition } from '../store/index'
 import { getClosestLocation, getTrends } from '../service/index'
+import { IClosestResponse } from '../../pages/api/closest'
 import { useQuery } from 'react-query'
 import { dispatch } from 'use-bus'
 
@@ -25,6 +26,7 @@ const Map :FC = () => {
     onSuccess: (response) => {
       setLoading(false)
       setTrendsInfo(response[0])
+      console.log(response[0])
       setTrendsBoxVisibility(true)
 
       if (woeid !== WOEID_WORDWIDE) {
@@ -46,7 +48,7 @@ const Map :FC = () => {
     setMapCenter(initialClickedPosition)
 
     await getClosestLocation(initialClickedPosition)
-      .then(function (res) {
+      .then((res : Array<IClosestResponse>) => {
         setWoeid(res[0].woeid)
         setCountryCode(res[0].countryCode)
         refechTrends()

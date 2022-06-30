@@ -1,12 +1,8 @@
 import React, { createContext, FC, useState, useMemo } from 'react'
-
+import { ITrendsResponse } from '../../pages/api/trends'
 export interface ILatLngPosition {
   lat?: number;
   lng?: number;
-}
-interface ITrendsInfo {
-  locations?: Array<any>;
-  trends?: Array<any>;
 }
 
 interface IGlobalContext {
@@ -14,8 +10,8 @@ interface IGlobalContext {
   setTrendsBoxVisibility: (arg: boolean | null) => void,
   clickedPosition: ILatLngPosition,
   setClickedPosition: (arg: ILatLngPosition) => void,
-  trendsInfo: any,
-  setTrendsInfo : (arg:ITrendsInfo) => void,
+  trendsInfo: ITrendsResponse,
+  setTrendsInfo : (arg:ITrendsResponse) => void,
   clickedPositionCountryCode: string,
   setClickedPositionCountryCode: (arg: string) => void,
   mapCenter :ILatLngPosition
@@ -40,7 +36,7 @@ const GlobalProvider : FC<IGlobalProvider> = ({ children }) => {
     [clickedPosition]
   )
 
-  const [trendsInfo, setTrendsInfo] = useState<IGlobalContext['trendsInfo']>({})
+  const [trendsInfo, setTrendsInfo] = useState<IGlobalContext['trendsInfo']>({} as ITrendsResponse)
   const trendsInfoValue = useMemo(
     () => ({ trendsInfo, setTrendsInfo }),
     [trendsInfo]
