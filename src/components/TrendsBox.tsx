@@ -1,5 +1,5 @@
 import React, { FC, useContext } from 'react'
-import TwitterLoader from './TwitterLoader'
+import Loader from './Loader'
 import Footer from './Footer'
 import Eye from './Eye'
 import { getFlagEmoji } from '../helpers/getFlagEmoji'
@@ -46,7 +46,7 @@ const TrendsBox : FC<TrendsBoxProps> = ({ info, flag, loading }) => {
                                   : <li><a><p>😞 No trend found</p></a></li>
                             }
                         </ul>
-                        {loading && <TwitterLoader />}
+                        {loading && <Loader />}
                     </div>
                     <Footer />
                 </section>
