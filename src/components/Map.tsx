@@ -9,7 +9,6 @@ import { useQuery } from 'react-query'
 import { dispatch } from 'use-bus'
 
 const WOEID_WORDWIDE = 1
-const GOOGLE_MAPS_API_KEY = process.env.GOOGLE_MAPS_API_KEY
 
 const Map :FC = () => {
   const { trendsInfo, setTrendsInfo } = useContext(GlobalContext)
@@ -58,7 +57,7 @@ const Map :FC = () => {
   return (
       <div id="map">
           <GoogleMapReact
-              bootstrapURLKeys={{ key: GOOGLE_MAPS_API_KEY }}
+              bootstrapURLKeys={{ key: process.env.GOOGLE_MAPS_API_KEY }}
               center= {mapCenter}
               defaultZoom={1}
               options={{
