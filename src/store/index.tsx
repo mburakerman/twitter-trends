@@ -1,6 +1,6 @@
 import React, { createContext, FC, useState, useMemo } from 'react'
 
-export interface IClickedPosition {
+export interface ILatLngPosition {
   lat?: number;
   lng?: number;
 }
@@ -8,22 +8,18 @@ interface ITrendsInfo {
   locations?: Array<any>;
   trends?: Array<any>;
 }
-interface IMapCenter {
-  lat: number;
-  lng:number
-}
 
 interface IGlobalContext {
   trendsBoxVisibility: boolean | null,
   setTrendsBoxVisibility: (arg: boolean | null) => void,
-  clickedPosition: IClickedPosition,
-  setClickedPosition: (arg: IClickedPosition) => void,
+  clickedPosition: ILatLngPosition,
+  setClickedPosition: (arg: ILatLngPosition) => void,
   trendsInfo: any,
   setTrendsInfo : (arg:ITrendsInfo) => void,
   clickedPositionCountryCode: string,
   setClickedPositionCountryCode: (arg: string) => void,
-  mapCenter :IMapCenter
-  setMapCenter : (arg:any) => void
+  mapCenter :ILatLngPosition
+  setMapCenter : (arg: ILatLngPosition) => void
 }
 export const GlobalContext = createContext<IGlobalContext>(undefined)
 

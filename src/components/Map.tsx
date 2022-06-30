@@ -3,7 +3,7 @@ import GoogleMapReact from 'google-map-react'
 import MapMarker from './MapMarker'
 import TrendsBox from './TrendsBox'
 import { updateFavicon } from '../helpers/updateFavicon'
-import { GlobalContext } from '../store/index'
+import { GlobalContext, ILatLngPosition } from '../store/index'
 import { getClosestLocation, getTrends } from '../service/index'
 import { useQuery } from 'react-query'
 import { dispatch } from 'use-bus'
@@ -38,7 +38,7 @@ const Map :FC = () => {
   }, [])
 
   async function getClickedAreasWoeid (e) {
-    const initialClickedPosition = {
+    const initialClickedPosition : ILatLngPosition = {
       lat: e.lat,
       lng: e.lng
     }

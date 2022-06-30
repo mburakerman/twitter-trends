@@ -1,11 +1,7 @@
 import React, { FC } from 'react'
+import { ILatLngPosition } from '../store/index'
 
-interface MapMarkerProps {
-  lat?: number;
-  lng?: number;
-}
-
-const MapMarker : FC<MapMarkerProps> = () => {
+const MapMarker : FC<ILatLngPosition> = () => {
   return <div className="map-marker"><img src="/puff.svg" loading="lazy" /></div>
 }
 
