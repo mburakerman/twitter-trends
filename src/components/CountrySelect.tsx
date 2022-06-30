@@ -3,6 +3,7 @@ import Select from 'react-select'
 import { GlobalContext } from '../store/index'
 import { getTrends, getCountries, getAvailableCountries } from '../service/index'
 import { updateFavicon } from '../helpers/updateFavicon'
+import { ICountriesResponse } from '../../pages/api/countries'
 import { useQuery } from 'react-query'
 import useBus from 'use-bus'
 
@@ -37,7 +38,7 @@ const CountrySelect : FC = () => {
     updateMapMarker(selectedCountry)
   }
   const updateMapMarker = (selectedCountry : any) => {
-    const selectedCountryLatLng = countries?.find(item => item?.alpha2Code === selectedCountry?.countryCode)?.latlng
+    const selectedCountryLatLng = countries?.find((item : ICountriesResponse) => item?.alpha2Code === selectedCountry?.countryCode)?.latlng
     const selectedCountryLatLngObj = { lat: selectedCountryLatLng?.[0], lng: selectedCountryLatLng?.[1] }
     setClickedPosition(selectedCountryLatLngObj)
     setMapCenter(selectedCountryLatLngObj)
