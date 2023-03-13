@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import TWITTER from "./_twitter";
+import { fetchFromRedis } from "../../src/redis-cache";
 
 export type Trend = {
   name: string;
@@ -26,11 +27,27 @@ export default async (
   res: NextApiResponse<TrendResponse[]>
 ) => {
   const woeid = req.body.woeid;
-  TWITTER.get(
-    "trends/place",
-    { id: woeid },
-    (_err: any, data: TrendResponse[]) => {
-      res.status(200).json(data);
-    }
-  );
+
+  const getTrendsPlace = <T>(): Promise<T> => {
+    return new Promise((resolve, reject) => {
+      TWITTER.get("trends/place", { id: woeid }, (err: Error, data: T) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(data);
+        }
+      });
+    });
+  };
+
+  try {
+    const data = await fetchFromRedis(
+      "trends",
+      async () => await getTrendsPlace<TrendResponse[]>(),
+      60
+    );
+    return res.status(200).json(data);
+  } catch (error) {
+    console.error(error);
+  }
 };
