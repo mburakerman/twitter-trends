@@ -3,13 +3,14 @@ import Head from "next/head";
 import Map from "../src/components/Map";
 import Eye from "../src/components/Eye";
 import TrendsBox from "../src/components/TrendsBox";
-import React from "react";
 import { dehydrate, QueryClient } from "react-query";
 import {
   getCountries,
   getAvailableCountries,
   getTrends,
 } from "../src/service/index";
+
+export const WOEID_WORLDWIDE = 1;
 
 export default function Home() {
   return (
@@ -59,12 +60,11 @@ export default function Home() {
 }
 
 export async function getServerSideProps() {
-  const WOEID_WORDWIDE = 1;
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery("countries", getCountries);
   await queryClient.prefetchQuery("availableCountries", getAvailableCountries);
-  await queryClient.prefetchQuery("trends", () => getTrends(WOEID_WORDWIDE));
+  await queryClient.prefetchQuery("trends", () => getTrends(WOEID_WORLDWIDE));
 
   return {
     props: {
