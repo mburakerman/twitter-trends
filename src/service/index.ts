@@ -6,7 +6,7 @@ import { ClosestLocationResponse } from "../../pages/api/closest";
 
 const BASE_URL =
   process.env.NODE_ENV === "development"
-    ? "http://localhost:3000"
+    ? "http://localhost:3004"
     : "https://twitter-trends.vercel.app";
 
 export const getClosestLocation = async (clickedPosition: LatLngPosition) => {
