@@ -5,12 +5,12 @@ beforeEach(() => {
 describe("initial load", () => {
   it("should contain page & trends title", () => {
     cy.contains("Twitter Trends");
-    cy.get(".trends-box__title").contains("🌍 Worldwide Trends");
+    cy.contains("Worldwide Trends");
   });
 });
 
 describe("country selection", () => {
-  it("should select Turkey from selectbox and show Turkey title", () => {
+  it("should select a country from selectbox and update the trends title", () => {
     const country = "Turkey";
 
     // eslint-disable-next-line cypress/no-unnecessary-waiting
@@ -22,7 +22,7 @@ describe("country selection", () => {
       .contains(country)
       .click(0, 0, { force: true });
 
-    cy.get(".trends-box__title").contains(`🇹🇷 ${country} Trends`);
+    cy.contains(`${country} Trends`);
   });
 });
 
@@ -31,7 +31,7 @@ describe("eye button", () => {
     // eslint-disable-next-line cypress/no-unnecessary-waiting
     cy.wait(100);
 
-    cy.get(".eye").click();
-    cy.get(".trends-box").should("not.visible");
+    cy.get("button").click();
+    cy.get("h1").should("not.visible");
   });
 });

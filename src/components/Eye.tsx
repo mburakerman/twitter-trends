@@ -10,11 +10,10 @@ const Eye = () => {
   );
 
   return (
-    <div
+    <button
       className="eye"
       title="Toggle Box"
       onClick={() => setTrendsBoxVisibility(!trendsBoxVisibility)}
-      data-testid="eye"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -30,7 +29,7 @@ const Eye = () => {
         <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
         <circle cx="12" cy="12" r="3"></circle>
       </svg>
-    </div>
+    </button>
   );
 };
 
