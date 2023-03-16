@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "test": "jest --watch",
-    "lint": "eslint . --ext .ts,.tsx,.js,.jsx"
+    "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run --browser chrome"
   },
   "dependencies": {
     "google-map-react": "^2.2.0",
@@ -32,9 +34,11 @@
     "@types/react-dom": "^18.0.3",
     "@typescript-eslint/eslint-plugin": "^5.26.0",
     "@typescript-eslint/parser": "^5.26.0",
+    "cypress": "^12.8.1",
     "eslint": "^8.16.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-n": "^15.2.0",
     "eslint-plugin-promise": "^6.0.0",
