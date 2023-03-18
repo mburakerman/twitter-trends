@@ -1,8 +1,10 @@
-import { LatLngPosition } from "../types/index";
 import { AvailableLocationResponse } from "../../pages/api/available";
 import { CountryResponse } from "../../pages/api/countries";
 import { TrendResponse } from "../../pages/api/trends";
-import { ClosestLocationResponse } from "../../pages/api/closest";
+import {
+  ClosestLocationResponse,
+  LatLngPosition,
+} from "../../pages/api/closest";
 
 const BASE_URL =
   process.env.NODE_ENV === "development"
