@@ -3,7 +3,7 @@ import GoogleMapReact from "google-map-react";
 import MapMarker from "./MapMarker";
 import { updateFavicon } from "../helpers/updateFavicon";
 import { getClosestLocation, getTrends } from "../service/index";
-import { LatLngPosition } from "../types/index";
+import { LatLngPosition } from "../../pages/api/closest";
 import { useQuery } from "react-query";
 import { dispatch } from "use-bus";
 import { useGlobalStore } from "../store";

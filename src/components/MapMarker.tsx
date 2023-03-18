@@ -1,5 +1,5 @@
 import React from "react";
-import { LatLngPosition } from "../types/index";
+import { LatLngPosition } from "../../pages/api/closest";
 
 const MapMarker = ({ lat, lng }: LatLngPosition) => {
   return (

@@ -1,6 +1,6 @@
 import create from "zustand";
 import { TrendResponse } from "../../pages/api/trends";
-import { LatLngPosition } from "../types/index";
+import { LatLngPosition } from "../../pages/api/closest";
 
 type GlobalStore = {
   trendsBoxVisibility: boolean;

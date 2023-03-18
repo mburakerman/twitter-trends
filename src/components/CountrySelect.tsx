@@ -14,7 +14,7 @@ import {
   AvailableLocationResponse,
   AvailableLocation,
 } from "../../pages/api/available";
-import { LatLngPosition } from "../types/index";
+import { LatLngPosition } from "../../pages/api/closest";
 import { WOEID_WORLDWIDE } from "../../pages/index";
 
 const CountrySelect = () => {
