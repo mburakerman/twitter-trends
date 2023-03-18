@@ -15,12 +15,11 @@ import {
   AvailableLocation,
 } from "../../pages/api/available";
 import { LatLngPosition } from "../types/index";
-
-const WOEID_WORDWIDE = 1;
+import { WOEID_WORLDWIDE } from "../../pages/index";
 
 const CountrySelect = () => {
   const [selectValue, setSelectValue] = useState<any>(null);
-  const [woeid, setWoeid] = useState<number>(WOEID_WORDWIDE);
+  const [woeid, setWoeid] = useState<number>(WOEID_WORLDWIDE);
 
   const trendsInfo = useGlobalStore((state) => state.trendsInfo);
   const setMapCenter = useGlobalStore((state) => state.setMapCenter);
@@ -55,7 +54,7 @@ const CountrySelect = () => {
     onSuccess: (response) => {
       setTrendsInfo(response[0]);
       setTrendsBoxVisibility(true);
-      if (woeid === WOEID_WORDWIDE) {
+      if (woeid === WOEID_WORLDWIDE) {
         updateFavicon("worldwide");
         setClickedPositionCountryCode("worldwide");
       }

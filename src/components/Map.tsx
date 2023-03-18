@@ -7,11 +7,10 @@ import { LatLngPosition } from "../types/index";
 import { useQuery } from "react-query";
 import { dispatch } from "use-bus";
 import { useGlobalStore } from "../store";
-
-const WOEID_WORDWIDE = 1;
+import { WOEID_WORLDWIDE } from "../../pages/index";
 
 const Map = () => {
-  const [woeid, setWoeid] = useState<number>(WOEID_WORDWIDE);
+  const [woeid, setWoeid] = useState<number>(WOEID_WORLDWIDE);
   const [countryCode, setCountryCode] = useState<string>();
   const [isRateLimitErrorExist, setIsRateLimitErrorExist] =
     useState<boolean>(false);
