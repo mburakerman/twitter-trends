@@ -18,20 +18,17 @@ type GlobalStore = {
 export const useGlobalStore = create<GlobalStore>()((set) => ({
   trendsBoxVisibility: false,
   setTrendsBoxVisibility: (visibility) =>
-    set((state) => ({ trendsBoxVisibility: visibility })),
+    set(() => ({ trendsBoxVisibility: visibility })),
   clickedPosition: null,
-  setClickedPosition: (latLng: LatLngPosition) =>
-    set((state) => ({ clickedPosition: latLng })),
+  setClickedPosition: (latLng) => set(() => ({ clickedPosition: latLng })),
   trendsInfo: {} as TrendResponse,
-  setTrendsInfo: (trends: TrendResponse) =>
-    set((state) => ({ trendsInfo: trends })),
+  setTrendsInfo: (trends) => set(() => ({ trendsInfo: trends })),
   clickedPositionCountryCode: "",
-  setClickedPositionCountryCode: (code: string) =>
-    set((state) => ({ clickedPositionCountryCode: code })),
+  setClickedPositionCountryCode: (code) =>
+    set(() => ({ clickedPositionCountryCode: code })),
   mapCenter: {
     lat: 41.015137,
     lng: 8.97953,
   },
-  setMapCenter: (center: LatLngPosition) =>
-    set((state) => ({ mapCenter: center })),
+  setMapCenter: (center) => set(() => ({ mapCenter: center })),
 }));
