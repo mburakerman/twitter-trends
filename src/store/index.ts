@@ -1,4 +1,4 @@
-import create from "zustand";
+import { create } from "zustand";
 import { TrendResponse } from "../../pages/api/trends";
 import { LatLngPosition } from "../../pages/api/closest";
 
