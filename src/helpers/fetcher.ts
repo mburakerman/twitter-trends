@@ -18,7 +18,7 @@ const fetcher = async <T>(
 
   const response = await fetch(`${BASE_URL}${url}`, requestOptions);
 
-  return response.json() as T;
+  return response.json() as Promise<T>;
 };
 
 export default fetcher;
