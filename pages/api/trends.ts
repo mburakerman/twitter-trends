@@ -6,7 +6,7 @@ import { WOEID_WORLDWIDE } from "../../pages/index";
 export type Trend = {
   name: string;
   url: string;
-  promoted_content?: any;
+  promoted_content?: unknown;
   query: string;
   tweet_volume?: number;
 };

@@ -15,7 +15,10 @@ import useAvailableCountries from "../hooks/useAvailableCountries";
 import useTrends from "../hooks/useTrends";
 
 const CountrySelect = () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [selectValue, setSelectValue] = useState<any>(null);
+
+  console.log("selectValue", selectValue);
   const [woeid, setWoeid] = useState<number>(WOEID_WORLDWIDE);
 
   const trendsInfo = useGlobalStore((state) => state.trendsInfo);

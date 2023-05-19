@@ -30,7 +30,7 @@ export default async (
   TWITTER.get(
     "trends/closest",
     { lat, long: lng },
-    (_err: any, data: ClosestLocationResponse[]) => {
+    (_err: Error, data: ClosestLocationResponse[]) => {
       res.status(200).json(data);
     }
   );

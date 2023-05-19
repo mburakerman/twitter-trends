@@ -23,6 +23,7 @@ module.exports = {
   rules: {
     "no-shadow": "off",
     "@typescript-eslint/no-shadow": ["error"],
+    "@typescript-eslint/no-explicit-any": ["error"],
   },
   settings: {
     react: {
