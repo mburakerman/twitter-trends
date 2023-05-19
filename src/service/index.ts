@@ -7,13 +7,8 @@ import {
 } from "../../pages/api/closest";
 import fetcher from "../helpers/fetcher";
 
-const BASE_URL =
-  process.env.NODE_ENV === "development"
-    ? "http://localhost:3004"
-    : "https://twitter-trends.vercel.app";
-
 export const getClosestLocation = async (clickedPosition: LatLngPosition) => {
-  const res = await fetch(BASE_URL + "/api/closest", {
+  return await fetcher<ClosestLocationResponse[]>("/api/closest", {
     method: "post",
     headers: {
       Accept: "application/json",
@@ -21,7 +16,6 @@ export const getClosestLocation = async (clickedPosition: LatLngPosition) => {
     },
     body: JSON.stringify(clickedPosition),
   });
-  return (await res.json()) as ClosestLocationResponse[];
 };
 
 export const getTrends = async (woeid: number) => {
