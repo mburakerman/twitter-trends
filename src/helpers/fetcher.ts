@@ -3,12 +3,8 @@ const BASE_URL =
     ? "http://localhost:3004"
     : "https://twitter-trends.vercel.app";
 
-const fetcher = async <T>(
-  url: string,
-  // eslint-disable-next-line no-undef
-  options?: RequestInit
-): Promise<T> => {
-  const requestOptions: Record<string, any> = {
+const fetcher = async <T>(url: string, options?: RequestInit): Promise<T> => {
+  const requestOptions: RequestInit = {
     ...options,
     headers: {
       "Content-Type": "application/json",
