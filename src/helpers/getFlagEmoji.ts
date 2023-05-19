@@ -6,9 +6,9 @@
 export function getFlagEmoji(countryCode: string) {
   if (countryCode === "worldwide")
     return String.fromCodePoint(...[0x1f30d]) + " ";
-  const codePoints = countryCode
-    .toUpperCase()
-    .split("")
-    .map((char: any) => 127397 + char.charCodeAt());
+  const codePoints: number[] = Array.from(countryCode.toUpperCase()).map(
+    (char: string) => 127397 + char.charCodeAt(0)
+  );
+
   return String.fromCodePoint(...codePoints) + " ";
 }

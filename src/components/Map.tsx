@@ -50,7 +50,7 @@ const Map = () => {
 
   useEffect(() => {
     refechTrends();
-  }, []);
+  }, [refechTrends]);
 
   async function getClickedAreasWoeid(event: GoogleMapReact.ClickEventValue) {
     const initialClickedPosition: LatLngPosition = {

@@ -3,7 +3,7 @@ import redis from "./redis";
 export const fetchFromRedis = async <T>(
   key: string,
   fetchFunction: () => Promise<T>,
-  expireTime: number = 3600
+  expireTime = 3600
 ): Promise<T> => {
   try {
     const redisData = await redis.get(key);
