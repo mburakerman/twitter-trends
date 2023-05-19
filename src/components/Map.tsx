@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import GoogleMapReact from "google-map-react";
 import MapMarker from "./MapMarker";
 import { updateFavicon } from "../helpers/updateFavicon";
-import { getClosestLocation, getTrends } from "../service/index";
+import { getClosestLocation } from "../service/index";
 import { LatLngPosition } from "../../pages/api/closest";
-import { useQuery } from "react-query";
 import { dispatch } from "use-bus";
 import { useGlobalStore } from "../store";
 import { WOEID_WORLDWIDE } from "../../pages/index";
+import useTrends from "../hooks/useTrends";
 
 const Map = () => {
   const [woeid, setWoeid] = useState<number>(WOEID_WORLDWIDE);
@@ -30,26 +30,24 @@ const Map = () => {
     (state) => state.setClickedPosition
   );
 
-  const { refetch: refechTrends } = useQuery(
-    ["trends", woeid],
-    () => getTrends(woeid),
-    {
-      enabled: !!trendsInfo,
-      onSuccess: (response) => {
-        if ("errors" in response) {
-          setIsRateLimitErrorExist(true);
-          return false;
-        } else {
-          setIsRateLimitErrorExist(false);
-        }
+  const { refetch: refechTrends } = useTrends(
+    woeid,
+    !!trendsInfo,
+    (response) => {
+      if ("errors" in response) {
+        setIsRateLimitErrorExist(true);
+        return false;
+      } else {
+        setIsRateLimitErrorExist(false);
+      }
 
-        setTrendsInfo(response[0]);
-        setTrendsBoxVisibility(true);
-        setClickedPositionCountryCode(countryCode || "worldwide");
-        updateFavicon(countryCode || "worldwide");
-      },
+      setTrendsInfo(response[0]);
+      setTrendsBoxVisibility(true);
+      setClickedPositionCountryCode(countryCode || "worldwide");
+      updateFavicon(countryCode || "worldwide");
     }
   );
+
   useEffect(() => {
     refechTrends();
   }, []);

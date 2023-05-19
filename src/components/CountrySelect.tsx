@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import Select from "react-select";
-import { useQuery } from "react-query";
 import useBus from "use-bus";
-import { getTrends } from "../service/index";
 import { updateFavicon } from "../helpers/updateFavicon";
 import { CountryResponse } from "../../pages/api/countries";
 import { useGlobalStore } from "../store";
@@ -14,6 +12,7 @@ import { LatLngPosition } from "../../pages/api/closest";
 import { WOEID_WORLDWIDE } from "../../pages/index";
 import useCountries from "../hooks/useCountries";
 import useAvailableCountries from "../hooks/useAvailableCountries";
+import useTrends from "../hooks/useTrends";
 
 const CountrySelect = () => {
   const [selectValue, setSelectValue] = useState<any>(null);
@@ -39,16 +38,13 @@ const CountrySelect = () => {
   const { data: countries } = useCountries();
   const { data: availableCountries } = useAvailableCountries();
 
-  useQuery(["trends", woeid], () => getTrends(woeid), {
-    enabled: !!trendsInfo,
-    onSuccess: (response) => {
-      setTrendsInfo(response[0]);
-      setTrendsBoxVisibility(true);
-      if (woeid === WOEID_WORLDWIDE) {
-        updateFavicon("worldwide");
-        setClickedPositionCountryCode("worldwide");
-      }
-    },
+  useTrends(woeid, !!trendsInfo, (response) => {
+    setTrendsInfo(response[0]);
+    setTrendsBoxVisibility(true);
+    if (woeid === WOEID_WORLDWIDE) {
+      updateFavicon("worldwide");
+      setClickedPositionCountryCode("worldwide");
+    }
   });
 
   const handleCountryChange = async (item: AvailableLocationResponse) => {

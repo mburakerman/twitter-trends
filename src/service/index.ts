@@ -25,7 +25,7 @@ export const getClosestLocation = async (clickedPosition: LatLngPosition) => {
 };
 
 export const getTrends = async (woeid: number) => {
-  const res = await fetch(BASE_URL + "/api/trends", {
+  return await fetcher<TrendResponse[]>("/api/trends", {
     method: "post",
     headers: {
       Accept: "application/json",
@@ -35,7 +35,6 @@ export const getTrends = async (woeid: number) => {
       woeid,
     }),
   });
-  return (await res.json()) as TrendResponse[];
 };
 
 export const getCountries = async () => {
