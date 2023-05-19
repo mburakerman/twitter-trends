@@ -5,6 +5,7 @@ import {
   ClosestLocationResponse,
   LatLngPosition,
 } from "../../pages/api/closest";
+import fetcher from "../helpers/fetcher";
 
 const BASE_URL =
   process.env.NODE_ENV === "development"
@@ -38,16 +39,14 @@ export const getTrends = async (woeid: number) => {
 };
 
 export const getCountries = async () => {
-  const res = await fetch(BASE_URL + "/api/countries");
-  return (await res.json()) as CountryResponse[];
+  return await fetcher<CountryResponse[]>("/api/countries");
 };
 
 export const getAvailableCountries = async () => {
-  const res = await fetch(BASE_URL + "/api/available");
-  const data = await res.json();
+  const response = await fetcher<AvailableLocationResponse[]>("/api/available");
+
   // if parentid = 1, it's a country
-  const countries = data?.filter(
-    (item: AvailableLocationResponse) => item?.parentId === 1
-  );
-  return countries as AvailableLocationResponse[];
+  const countries = response.filter((item) => item?.parentId === 1);
+
+  return countries;
 };
