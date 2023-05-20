@@ -15,10 +15,39 @@ const TrendsBox = ({ loading }: Props) => {
     (state) => state.clickedPositionCountryCode
   );
   const trendsInfo = useGlobalStore((state) => state.trendsInfo);
-
   const trendsBoxVisibility = useGlobalStore(
     (state) => state.trendsBoxVisibility
   );
+
+  const renderTrendItems = () => {
+    if (!trendsInfo?.trends) {
+      return (
+        <li>
+          <a>
+            <p>😞 No trend found</p>
+          </a>
+        </li>
+      );
+    }
+
+    return trendsInfo.trends.map((item: Trend, index: number) => {
+      if (!item.tweet_volume) {
+        return null;
+      }
+
+      return (
+        <li key={index}>
+          <a href={item.url} target="_blank" rel="noopener noreferrer">
+            <p>{item.name}</p>
+            <small>
+              {new Intl.NumberFormat(["ban", "id"]).format(item.tweet_volume)}{" "}
+              Tweet
+            </small>
+          </a>
+        </li>
+      );
+    });
+  };
 
   return (
     <div
@@ -37,38 +66,7 @@ const TrendsBox = ({ loading }: Props) => {
             {trendsInfo.locations[0].name} Trends
           </h2>
         )}
-        <ul className="trends-box__trends">
-          {trendsInfo?.trends ? (
-            trendsInfo?.trends.map(function (item: Trend, index: number) {
-              return (
-                item.tweet_volume && (
-                  <li key={index}>
-                    <a
-                      href={item.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <p>{item.name}</p>
-                      <small>
-                        {item.tweet_volume &&
-                          new Intl.NumberFormat(["ban", "id"]).format(
-                            item.tweet_volume
-                          )}{" "}
-                        Tweet
-                      </small>
-                    </a>
-                  </li>
-                )
-              );
-            })
-          ) : (
-            <li>
-              <a>
-                <p>😞 No trend found</p>
-              </a>
-            </li>
-          )}
-        </ul>
+        <ul className="trends-box__trends">{renderTrendItems()}</ul>
         {loading && <Loader />}
       </div>
 
