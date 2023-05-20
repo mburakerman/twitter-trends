@@ -13,11 +13,11 @@ import useCountries from "../hooks/useCountries";
 import useAvailableCountries from "../hooks/useAvailableCountries";
 import useTrends from "../hooks/useTrends";
 
-const CountrySelect = () => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [selectValue, setSelectValue] = useState<any>(null);
+type SelectedCountryType = AvailableLocationResponse | null;
 
-  const [woeid, setWoeid] = useState<number>(WOEID_WORLDWIDE);
+const CountrySelect = () => {
+  const [selectValue, setSelectValue] = useState<SelectedCountryType>(null);
+  const [woeid, setWoeid] = useState(WOEID_WORLDWIDE);
 
   const trendsInfo = useGlobalStore((state) => state.trendsInfo);
   const setMapCenter = useGlobalStore((state) => state.setMapCenter);
@@ -48,7 +48,9 @@ const CountrySelect = () => {
     }
   });
 
-  const handleCountryChange = async (item: AvailableLocationResponse) => {
+  const handleCountryChange = async (item: SelectedCountryType) => {
+    if (!item) return;
+
     const selectedCountry = item?.value;
     const {
       woeid: selectedCountryWoeid,
