@@ -14,7 +14,7 @@ type Translations = {
   it: string;
   hu: string;
 };
-// eslint-disable-next-line no-unused-vars
+// eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
 type Country = {
   name: string;
   topLevelDomain: string[];

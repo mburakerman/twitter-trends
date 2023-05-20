@@ -25,7 +25,7 @@ export default async (
   _req: NextApiRequest,
   res: NextApiResponse<AvailableLocationResponse[]>
 ) => {
-  TWITTER.get("trends/available", (_err: any, data: AvailableLocation[]) => {
+  TWITTER.get("trends/available", (_err: Error, data: AvailableLocation[]) => {
     res.status(200).json(
       data.map((item) => {
         return {

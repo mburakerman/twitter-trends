@@ -8,6 +8,8 @@ module.exports = {
     "plugin:react/recommended",
     "standard",
     "prettier",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react-hooks/recommended",
     "plugin:cypress/recommended",
   ],
   parser: "@typescript-eslint/parser",
@@ -22,6 +24,7 @@ module.exports = {
   rules: {
     "no-shadow": "off",
     "@typescript-eslint/no-shadow": ["error"],
+    "@typescript-eslint/no-explicit-any": ["error"],
   },
   settings: {
     react: {

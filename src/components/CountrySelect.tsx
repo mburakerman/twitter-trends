@@ -1,12 +1,6 @@
 import React, { useState } from "react";
 import Select from "react-select";
-import { useQuery } from "react-query";
 import useBus from "use-bus";
-import {
-  getTrends,
-  getCountries,
-  getAvailableCountries,
-} from "../service/index";
 import { updateFavicon } from "../helpers/updateFavicon";
 import { CountryResponse } from "../../pages/api/countries";
 import { useGlobalStore } from "../store";
@@ -16,9 +10,15 @@ import {
 } from "../../pages/api/available";
 import { LatLngPosition } from "../../pages/api/closest";
 import { WOEID_WORLDWIDE } from "../../pages/index";
+import useCountries from "../hooks/useCountries";
+import useAvailableCountries from "../hooks/useAvailableCountries";
+import useTrends from "../hooks/useTrends";
 
 const CountrySelect = () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [selectValue, setSelectValue] = useState<any>(null);
+
+  console.log("selectValue", selectValue);
   const [woeid, setWoeid] = useState<number>(WOEID_WORLDWIDE);
 
   const trendsInfo = useGlobalStore((state) => state.trendsInfo);
@@ -38,27 +38,16 @@ const CountrySelect = () => {
   sets the value of the select to null. */
   useBus("MAP_CLICKED", () => setSelectValue(null));
 
-  const { data: countries } = useQuery("countries", getCountries, {
-    enabled: false,
-  });
-  const { data: availableCountries } = useQuery(
-    "availableCountries",
-    getAvailableCountries,
-    {
-      enabled: false,
-    }
-  );
+  const { data: countries } = useCountries();
+  const { data: availableCountries } = useAvailableCountries();
 
-  useQuery(["trends", woeid], () => getTrends(woeid), {
-    enabled: !!trendsInfo,
-    onSuccess: (response) => {
-      setTrendsInfo(response[0]);
-      setTrendsBoxVisibility(true);
-      if (woeid === WOEID_WORLDWIDE) {
-        updateFavicon("worldwide");
-        setClickedPositionCountryCode("worldwide");
-      }
-    },
+  useTrends(woeid, !!trendsInfo, (response) => {
+    setTrendsInfo(response[0]);
+    setTrendsBoxVisibility(true);
+    if (woeid === WOEID_WORLDWIDE) {
+      updateFavicon("worldwide");
+      setClickedPositionCountryCode("worldwide");
+    }
   });
 
   const handleCountryChange = async (item: AvailableLocationResponse) => {
