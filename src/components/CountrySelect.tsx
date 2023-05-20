@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Select from "react-select";
 import useBus from "use-bus";
 import { updateFavicon } from "../helpers/updateFavicon";
-import { CountryResponse } from "../../pages/api/countries";
 import { useGlobalStore } from "../store";
 import {
   AvailableLocationResponse,
@@ -18,7 +17,6 @@ const CountrySelect = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [selectValue, setSelectValue] = useState<any>(null);
 
-  console.log("selectValue", selectValue);
   const [woeid, setWoeid] = useState<number>(WOEID_WORLDWIDE);
 
   const trendsInfo = useGlobalStore((state) => state.trendsInfo);
@@ -52,17 +50,21 @@ const CountrySelect = () => {
 
   const handleCountryChange = async (item: AvailableLocationResponse) => {
     const selectedCountry = item?.value;
-    setWoeid(selectedCountry?.woeid);
-    updateFavicon(selectedCountry?.countryCode);
-    setClickedPositionCountryCode(selectedCountry?.countryCode);
+    const {
+      woeid: selectedCountryWoeid,
+      countryCode: selectedCountryCountryCode,
+    } = selectedCountry;
+
+    setWoeid(selectedCountryWoeid);
+    updateFavicon(selectedCountryCountryCode);
+    setClickedPositionCountryCode(selectedCountryCountryCode);
     updateMapMarker(selectedCountry);
     setSelectValue(item);
   };
 
   const updateMapMarker = (selectedCountry: AvailableLocation) => {
     const selectedCountryLatLng = countries?.find(
-      (item: CountryResponse) =>
-        item?.alpha2Code === selectedCountry?.countryCode
+      ({ alpha2Code }) => alpha2Code === selectedCountry?.countryCode
     )?.latlng;
 
     const selectedCountryLatLngObj: LatLngPosition = {
