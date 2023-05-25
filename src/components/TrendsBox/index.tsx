@@ -1,10 +1,11 @@
 import React from "react";
-import Loader from "./Loader";
-import Footer from "./Footer";
-import { getFlagEmoji } from "../helpers/getFlagEmoji";
-import CountrySelect from "./CountrySelect";
-import { useGlobalStore } from "../store";
-import { Trend } from "../../pages/api/trends";
+import styles from "./trendsBox.module.css";
+import Loader from "../Loader/index";
+import Footer from "../Footer/index";
+import { getFlagEmoji } from "../../helpers/getFlagEmoji";
+import CountrySelect from "../CountrySelect/index";
+import { useGlobalStore } from "../../store";
+import { Trend } from "../../../pages/api/trends";
 
 type Props = {
   loading?: boolean;
@@ -51,22 +52,22 @@ const TrendsBox = ({ loading }: Props) => {
 
   return (
     <div
-      className="trends-box"
+      className={styles.container}
       style={{ display: trendsBoxVisibility ? "block" : "none" }}
     >
-      <header>
+      <header className={styles.header}>
         <h1>Twitter Trends</h1>
       </header>
 
-      <div className="trends-box__body">
+      <div>
         <CountrySelect />
         {trendsInfo?.locations && (
-          <h2 className="trends-box__title">
+          <h2 className={styles.title}>
             {getFlagEmoji(clickedPositionCountryCode)}
             {trendsInfo.locations[0].name} Trends
           </h2>
         )}
-        <ul className="trends-box__trends">{renderTrendItems()}</ul>
+        <ul className={styles.trends}>{renderTrendItems()}</ul>
         {loading && <Loader />}
       </div>
 

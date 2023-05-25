@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./errorBoundaryFallback.module.css";
 
 type Props = {
   error?: Error;
@@ -6,7 +7,7 @@ type Props = {
 };
 const ErrorBoundaryFallback = ({ error, resetErrorBoundary }: Props) => {
   return (
-    <div className="error-boundary-fallback">
+    <div className={styles.container}>
       <h5>Something went wrong :/</h5>
       <p>{error?.message}</p>
       <button onClick={resetErrorBoundary}>Try again</button>

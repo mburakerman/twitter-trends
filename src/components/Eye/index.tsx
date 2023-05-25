@@ -1,5 +1,6 @@
 import React from "react";
-import { useGlobalStore } from "../store";
+import styles from "./eye.module.css";
+import { useGlobalStore } from "../../store";
 
 const Eye = () => {
   const trendsBoxVisibility = useGlobalStore(
@@ -11,7 +12,7 @@ const Eye = () => {
 
   return (
     <button
-      className="eye"
+      className={styles.container}
       title="Toggle Box"
       onClick={() => setTrendsBoxVisibility(!trendsBoxVisibility)}
     >

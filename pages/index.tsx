@@ -1,8 +1,8 @@
 /* eslint-disable */
 import Head from "next/head";
-import Map from "../src/components/Map";
-import Eye from "../src/components/Eye";
-import TrendsBox from "../src/components/TrendsBox";
+import Map from "../src/components/Map/index";
+import Eye from "../src/components/Eye/index";
+import TrendsBox from "../src/components/TrendsBox/index";
 import { dehydrate, QueryClient } from "react-query";
 import {
   getCountries,

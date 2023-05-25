@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import GoogleMapReact from "google-map-react";
-import MapMarker from "./MapMarker";
-import { updateFavicon } from "../helpers/updateFavicon";
-import { getClosestLocation } from "../service/index";
-import { LatLngPosition } from "../../pages/api/closest";
+import styles from "./map.module.css";
+import MapMarker from "../MapMarker/index";
+import { updateFavicon } from "../../helpers/updateFavicon";
+import { getClosestLocation } from "../../service/index";
+import { LatLngPosition } from "../../../pages/api/closest";
 import { dispatch } from "use-bus";
-import { useGlobalStore } from "../store";
-import { WOEID_WORLDWIDE } from "../../pages/index";
-import useTrends from "../hooks/useTrends";
+import { useGlobalStore } from "../../store";
+import { WOEID_WORLDWIDE } from "../../../pages/index";
+import useTrends from "../../hooks/useTrends";
 
 const Map = () => {
   const [woeid, setWoeid] = useState<number>(WOEID_WORLDWIDE);
@@ -75,7 +76,7 @@ const Map = () => {
   }
 
   return (
-    <div id="map">
+    <div id={styles.map}>
       <GoogleMapReact
         bootstrapURLKeys={{
           key: process.env.GOOGLE_MAPS_API_KEY || "",

@@ -1,0 +1,65 @@
+.container {
+  position: absolute;
+  top: 0;
+  right: 0px;
+  width: var(--boxWidth);
+  background-color: var(--boxBackgroundColor);
+  border-radius: 0px;
+  color: #fff;
+}
+
+.header {
+  padding: 15px 0;
+  color: #fff;
+  text-align: center;
+}
+
+.header h1 {
+  font-size: 23px;
+  font-weight: bold;
+}
+
+.title {
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 0.5em 1em;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+}
+
+.title img {
+  display: block;
+  margin-right: 0.5em;
+}
+
+.trends {
+  max-height: 300px;
+  min-height: 300px;
+  overflow-x: auto;
+}
+
+.trends li a {
+  color: #fff;
+  display: block;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 15px;
+  padding: 0.75em 1em;
+  text-decoration: none;
+}
+
+.trends li a:hover {
+  background-color: rgba(21, 32, 43, 0.2);
+  transition: all 0.2s ease;
+}
+
+.trends li a p {
+  font-weight: 500;
+  margin-bottom: 0.4em;
+}
+
+.trends li a small {
+  opacity: 0.6;
+  font-size: smaller;
+}

@@ -1,7 +1,8 @@
 import React from "react";
+import styles from "./footer.module.css";
 
 const Footer = () => (
-  <footer>
+  <footer className={styles.footer}>
     <details>
       <summary>What is this?</summary>
       <p>
@@ -9,7 +10,7 @@ const Footer = () => (
         closest areas current Twitter trending topics and hashtags.
       </p>
     </details>
-    <div className="footer__bottom">
+    <div className={styles.footer__bottom}>
       <p>
         Made with{" "}
         <a

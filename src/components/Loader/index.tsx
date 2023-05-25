@@ -1,7 +1,8 @@
 import React from "react";
+import styles from "./loader.module.css";
 
 const Loader = () => (
-  <div className="trends-box__loader">
+  <div className={styles.loader}>
     <svg
       width="38"
       height="38"

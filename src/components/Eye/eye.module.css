@@ -1,0 +1,17 @@
+.container {
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+  z-index: 9999;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  border: none;
+}
+.container svg {
+  width: 18px;
+}
+.container svg:hover {
+  opacity: 0.5;
+}
