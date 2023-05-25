@@ -5,6 +5,7 @@ type Props = {
   error?: Error;
   resetErrorBoundary: () => void;
 };
+
 const ErrorBoundaryFallback = ({ error, resetErrorBoundary }: Props) => {
   return (
     <div className={styles.container}>
