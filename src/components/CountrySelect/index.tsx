@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 import Select from "react-select";
 import useBus from "use-bus";
-import { updateFavicon } from "../helpers/updateFavicon";
-import { useGlobalStore } from "../store";
+import styles from "./countrySelect.module.css";
+import { updateFavicon } from "../../helpers/updateFavicon";
+import { useGlobalStore } from "../../store";
 import {
   AvailableLocationResponse,
   AvailableLocation,
-} from "../../pages/api/available";
-import { LatLngPosition } from "../../pages/api/closest";
-import { WOEID_WORLDWIDE } from "../../pages/index";
-import useCountries from "../hooks/useCountries";
-import useAvailableCountries from "../hooks/useAvailableCountries";
-import useTrends from "../hooks/useTrends";
+} from "../../../pages/api/available";
+import { LatLngPosition } from "../../../pages/api/closest";
+import { WOEID_WORLDWIDE } from "../../../pages/index";
+import useCountries from "../../hooks/useCountries";
+import useAvailableCountries from "../../hooks/useAvailableCountries";
+import useTrends from "../../hooks/useTrends";
 
 type SelectedCountryType = AvailableLocationResponse | null;
 
@@ -80,7 +81,7 @@ const CountrySelect = () => {
   return (
     <Select
       placeholder={"Select a trends available country"}
-      className="country-select"
+      className={styles.container}
       options={availableCountries}
       onChange={handleCountryChange}
       value={selectValue}

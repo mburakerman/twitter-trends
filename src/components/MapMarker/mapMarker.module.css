@@ -1,0 +1,7 @@
+.container {
+  width: 44px;
+  height: 44px;
+  transform: translate(-50%, -100%);
+  position: relative;
+  top: 22px;
+}

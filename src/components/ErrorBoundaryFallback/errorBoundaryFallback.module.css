@@ -1,4 +1,4 @@
-.error-boundary-fallback {
+.container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,16 +8,16 @@
   margin-left: 20px;
   margin-right: 20px;
 }
-.error-boundary-fallback h5 {
+.container h5 {
   margin-bottom: 20px;
   font-size: 30px;
 }
-.error-boundary-fallback p {
+.container p {
   margin-bottom: 20px;
   font-size: 20px;
   color: #850505;
 }
-.error-boundary-fallback button {
+.container button {
   cursor: pointer;
   font-size: 20px;
   background-color: #ffffff;
