@@ -1,18 +1,19 @@
 import React, { useState } from "react";
 import Select from "react-select";
 import useBus from "use-bus";
-import styles from "./countrySelect.module.css";
-import { updateFavicon } from "../../helpers/updateFavicon";
-import { useGlobalStore } from "../../store";
+
 import {
-  AvailableLocationResponse,
   AvailableLocation,
+  AvailableLocationResponse,
 } from "../../../pages/api/available";
 import { LatLngPosition } from "../../../pages/api/closest";
 import { WOEID_WORLDWIDE } from "../../../pages/index";
-import useCountries from "../../hooks/useCountries";
+import { updateFavicon } from "../../helpers/updateFavicon";
 import useAvailableCountries from "../../hooks/useAvailableCountries";
+import useCountries from "../../hooks/useCountries";
 import useTrends from "../../hooks/useTrends";
+import { useGlobalStore } from "../../store";
+import styles from "./countrySelect.module.css";
 
 type SelectedCountryType = AvailableLocationResponse | null;
 

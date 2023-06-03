@@ -3,6 +3,7 @@
  * @param {string} countryCode - The country code of the country you want to display the flag of.
  */
 import { getFlagEmoji } from "./getFlagEmoji";
+
 export function updateFavicon(countryCode: string) {
   const favicon = document.getElementById("favicon") as HTMLLinkElement | null;
   if (favicon) {

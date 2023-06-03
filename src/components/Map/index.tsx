@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from "react";
 import GoogleMapReact from "google-map-react";
-import styles from "./map.module.css";
-import MapMarker from "../MapMarker/index";
-import { updateFavicon } from "../../helpers/updateFavicon";
-import { getClosestLocation } from "../../service/index";
-import { LatLngPosition } from "../../../pages/api/closest";
+import React, { useEffect, useState } from "react";
 import { dispatch } from "use-bus";
-import { useGlobalStore } from "../../store";
+
+import { LatLngPosition } from "../../../pages/api/closest";
 import { WOEID_WORLDWIDE } from "../../../pages/index";
+import { updateFavicon } from "../../helpers/updateFavicon";
 import useTrends from "../../hooks/useTrends";
+import { getClosestLocation } from "../../service/index";
+import { useGlobalStore } from "../../store";
+import MapMarker from "../MapMarker/index";
+import styles from "./map.module.css";
 
 const Map = () => {
   const [woeid, setWoeid] = useState<number>(WOEID_WORLDWIDE);
