@@ -1,9 +1,10 @@
-import "../src/global.css";
 import { AppProps } from "next/app";
 import React from "react";
-import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
 import { ErrorBoundary } from "react-error-boundary";
+import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
+
 import ErrorBoundaryFallback from "../src/components/ErrorBoundaryFallback/index";
+import "../src/global.css";
 
 function App({ Component, pageProps }: AppProps) {
   const [queryClient] = React.useState(

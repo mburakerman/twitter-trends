@@ -2,5 +2,8 @@
   "printWidth": 80,
   "useTabs": false,
   "singleQuote": false,
-  "quoteProps": "preserve"
+  "quoteProps": "preserve",
+  "importOrder": ["^[./]"],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
 }

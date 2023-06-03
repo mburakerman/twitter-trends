@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
+
 import TWITTER from "./_twitter";
 
 export type AvailableLocation = {

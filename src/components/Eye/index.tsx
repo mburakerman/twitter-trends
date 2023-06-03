@@ -1,6 +1,7 @@
 import React from "react";
-import styles from "./eye.module.css";
+
 import { useGlobalStore } from "../../store";
+import styles from "./eye.module.css";
 
 const Eye = () => {
   const trendsBoxVisibility = useGlobalStore(

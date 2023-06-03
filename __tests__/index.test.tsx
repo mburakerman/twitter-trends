@@ -1,8 +1,8 @@
-import React from "react";
+import { expect } from "@jest/globals";
 import "@testing-library/jest-dom";
 import "@testing-library/jest-dom/extend-expect";
-import { render, renderHook, act } from "@testing-library/react";
-import { expect } from "@jest/globals";
+import { act, render, renderHook } from "@testing-library/react";
+import React from "react";
 
 import Eye from "../src/components/Eye";
 import { useGlobalStore } from "../src/store";

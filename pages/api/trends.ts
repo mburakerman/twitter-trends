@@ -1,7 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import TWITTER from "./_twitter";
-import { fetchFromRedis } from "../../src/redis-cache";
+
 import { WOEID_WORLDWIDE } from "../../pages/index";
+import { fetchFromRedis } from "../../src/redis-cache";
+import TWITTER from "./_twitter";
 
 export type Trend = {
   name: string;

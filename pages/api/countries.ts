@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
+
 import countries from "../../public/countries.json";
 
 type Translations = {

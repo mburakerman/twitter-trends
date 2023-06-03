@@ -1,12 +1,13 @@
-import React from "react";
 import Head from "next/head";
-import { dehydrate, QueryClient } from "react-query";
-import Map from "../src/components/Map/index";
+import React from "react";
+import { QueryClient, dehydrate } from "react-query";
+
 import Eye from "../src/components/Eye/index";
+import Map from "../src/components/Map/index";
 import TrendsBox from "../src/components/TrendsBox/index";
 import {
-  getCountries,
   getAvailableCountries,
+  getCountries,
   getTrends,
 } from "../src/service/index";
 

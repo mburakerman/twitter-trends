@@ -1,11 +1,12 @@
 import React from "react";
-import styles from "./trendsBox.module.css";
-import Loader from "../Loader/index";
-import Footer from "../Footer/index";
-import { getFlagEmoji } from "../../helpers/getFlagEmoji";
-import CountrySelect from "../CountrySelect/index";
-import { useGlobalStore } from "../../store";
+
 import { Trend } from "../../../pages/api/trends";
+import { getFlagEmoji } from "../../helpers/getFlagEmoji";
+import { useGlobalStore } from "../../store";
+import CountrySelect from "../CountrySelect/index";
+import Footer from "../Footer/index";
+import Loader from "../Loader/index";
+import styles from "./trendsBox.module.css";
 
 type Props = {
   loading?: boolean;

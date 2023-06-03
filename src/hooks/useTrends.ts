@@ -1,4 +1,5 @@
 import { useQuery } from "react-query";
+
 import { getTrends } from "../service";
 
 const useTrends = (

@@ -1,10 +1,10 @@
 import { AvailableLocationResponse } from "../../pages/api/available";
-import { CountryResponse } from "../../pages/api/countries";
-import { TrendResponse } from "../../pages/api/trends";
 import {
   ClosestLocationResponse,
   LatLngPosition,
 } from "../../pages/api/closest";
+import { CountryResponse } from "../../pages/api/countries";
+import { TrendResponse } from "../../pages/api/trends";
 import fetcher from "../helpers/fetcher";
 
 export const getClosestLocation = async (clickedPosition: LatLngPosition) => {
