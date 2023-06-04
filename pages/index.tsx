@@ -18,10 +18,37 @@ export default function Home() {
     <div>
       <Head>
         <title>Twitter Trends</title>
+        <meta name="title" content="Twitter Trends" />
+        <meta name="description" content="Twitter Trends on Google Maps" />
+
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1.0, user-scalable=no"
         />
+
+        {/*  Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://twitter-trends.vercel.app/" />
+        <meta property="og:title" content="Twitter Trends" />
+        <meta
+          property="og:description"
+          content="Twitter Trends on Google Maps"
+        />
+        <meta property="og:image" content="" />
+
+        {/* Twitter  */}
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta
+          property="twitter:url"
+          content="https://twitter-trends.vercel.app/"
+        />
+        <meta property="twitter:title" content="Twitter Trends" />
+        <meta
+          property="twitter:description"
+          content="Twitter Trends on Google Maps"
+        />
+        <meta property="twitter:image" content=""></meta>
+
         <link
           rel="icon"
           id="favicon"
